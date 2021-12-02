@@ -9,7 +9,9 @@ import java.util.ArrayList;
 
 public class CategoriaController {
     private static final String SQL_READALL = "SELECT * FROM CATEGORIA";
-    
+    private static final String SQL_INSERT = "INSERT INTO CATEGORIA (DESCRIPCION) VALUES (?)";
+    private static final String SQL_UPDATE = "UPDATE CATEGORIA SET DESCRIPCION = ? WHERE ID = ?";
+    private static final String SQL_DELETE = "DELETE FROM CATEGORIA WHERE ID = ?";
     
     //Definir un objeto Conexion para enlarzar este controlador con la BD
     private static final Conexion CONEXION = Conexion.obtenerConexion();
@@ -44,4 +46,53 @@ public class CategoriaController {
         }
     }
     
+    public boolean crearCategoria(Categoria C) {
+        try {
+            ps = CONEXION.getConexion().prepareStatement(SQL_INSERT);
+            ps.setString(1, C.getDescripcion());
+            if (ps.executeUpdate() > 0) {
+                return true;
+            }
+            return false;
+        } catch (SQLException ex) {
+            return false;
+        } finally {
+            CONEXION.cerrarConexion();
+        }
+    }
+    
+    public boolean actualizarCategoria(Categoria C) {
+        try
+        {
+            ps = CONEXION.getConexion().prepareStatement(SQL_UPDATE);
+            ps.setString(1, C.getDescripcion());
+            ps.setInt(2, C.getID());
+            return ps.executeUpdate() > 0;
+        }
+        catch(SQLException ex)
+        {
+            return false;
+        }
+        finally
+        {
+            CONEXION.cerrarConexion();
+        }       
+    }
+    
+    public boolean eliminarCategoria(Categoria C) {
+        try
+        {
+            ps = CONEXION.getConexion().prepareStatement(SQL_DELETE);
+            ps.setInt(1, C.getID());
+            return ps.executeUpdate() > 0;
+        }
+        catch(SQLException ex)
+        {
+            return false;
+        }
+        finally
+        {
+            CONEXION.cerrarConexion();
+        }       
+    }
 }

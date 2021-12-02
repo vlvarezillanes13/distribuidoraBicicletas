@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class BicicletaController {
-    private static final String SQL_READ_F = "SELECT * FROM FABRICANTE WHERE ID = ?";
     private static final String SQL_READALL = "SELECT * FROM BICICLETA";
     
     
@@ -28,7 +27,6 @@ public class BicicletaController {
 
             ps = CONEXION.getConexion().prepareStatement(SQL_READALL);
             rs = ps.executeQuery();
-            System.out.println("rs: "+rs);
             while(rs.next())
             {
                 bicicletas.add(new Bicicleta(rs.getInt(1), rs.getString(2),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getInt(9),rs.getInt(10),rs.getInt(4),rs.getInt(3)));
