@@ -13,6 +13,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
     JScrollPane scrollpane;
     
     public vistaPrincipal() {
+        setTitle("Menú Principal");
         initComponents();
         
         this.jInternalFrameFabricante.setVisible(false);
@@ -111,6 +112,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         MenuBicicletas = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
+        MenuIntegrantes = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
 
@@ -240,7 +242,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 21, Short.MAX_VALUE))
+                .addGap(0, 33, Short.MAX_VALUE))
         );
 
         jInternalFrameCategorias.setClosable(true);
@@ -367,7 +369,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
                     .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 24, Short.MAX_VALUE))
+                .addGap(0, 36, Short.MAX_VALUE))
         );
 
         jInternalFrameBicicletas.setClosable(true);
@@ -597,7 +599,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
                                     .addComponent(TXTIDC_BICI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 75, Short.MAX_VALUE))
+                .addGap(0, 87, Short.MAX_VALUE))
         );
 
         jMenu1.setText("Fabricante");
@@ -637,6 +639,15 @@ public class vistaPrincipal extends javax.swing.JFrame {
         MenuCategorias.add(jMenu3);
 
         jMenu5.setText("Acerca de");
+
+        MenuIntegrantes.setText("VER INTEGRANTES");
+        MenuIntegrantes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuIntegrantesActionPerformed(evt);
+            }
+        });
+        jMenu5.add(MenuIntegrantes);
+
         MenuCategorias.add(jMenu5);
 
         jMenu4.setText("Salir");
@@ -735,6 +746,12 @@ public class vistaPrincipal extends javax.swing.JFrame {
         this.add(scrollpane);
     }//GEN-LAST:event_MenuBicicletasActionPerformed
 
+    private void MenuIntegrantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuIntegrantesActionPerformed
+        //acercaDe p = new acercaDe();
+        //this.getContentPane().add(p);
+        //p.setBounds(100, 120, 700, 300);
+    }//GEN-LAST:event_MenuIntegrantesActionPerformed
+
 
     
     private void limpiarFabCat(){
@@ -758,6 +775,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem MenuBicicletas;
     private javax.swing.JMenuBar MenuCategorias;
     private javax.swing.JMenuItem MenuFabricantes;
+    private javax.swing.JMenuItem MenuIntegrantes;
     private javax.swing.JTextField TXTIDC_BICI;
     private javax.swing.JTextField TXTIDF_BICI;
     private javax.swing.JButton btnAgregarBicicleta;
