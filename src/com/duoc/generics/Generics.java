@@ -123,4 +123,40 @@ public class Generics {
         trs = new TableRowSorter(modelo);
         tablaBusqueda.setRowSorter(trs);
     }
+    
+    public void tableFilterBici(javax.swing.JTable tablaBusqueda, javax.swing.JTextField txtBusqueda, javax.swing.JComboBox opcBusqueda){
+        
+        DefaultTableModel modelo = (DefaultTableModel) tablaBusqueda.getModel();
+        
+        txtBusqueda.addKeyListener(new KeyAdapter(){
+            @Override
+            public void keyReleased( KeyEvent ke){
+                String busqueda = txtBusqueda.getText();
+                String tipo = opcBusqueda.getSelectedItem().toString();
+                int col;
+                switch(tipo){
+                    case "ID":
+                        col = 0;
+                        break;
+                    case "Modelo":
+                        col = 1;
+                        break;
+                    case "Stock":
+                        col = 6;
+                        break;
+                    case "Valor":
+                        col = 7;
+                        break;
+                    default:
+                        col = 1;
+                        break;
+                }
+  
+                trs.setRowFilter(RowFilter.regexFilter("(?i)"+busqueda, col));
+            }
+        });
+        
+        trs = new TableRowSorter(modelo);
+        tablaBusqueda.setRowSorter(trs);
+    }
 }
