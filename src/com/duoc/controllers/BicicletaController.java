@@ -1,6 +1,6 @@
 package com.duoc.controllers;
 
-import com.douc.conexion.Conexion;
+import com.duoc.conexion.Conexion;
 import com.duoc.models.Bicicleta;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

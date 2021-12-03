@@ -1,6 +1,6 @@
 package com.duoc.models;
 
-import com.douc.generics.Generics;
+import com.duoc.generics.Generics;
 import com.duoc.controllers.BicicletaController;
 import java.awt.HeadlessException;
 import java.util.ArrayList;

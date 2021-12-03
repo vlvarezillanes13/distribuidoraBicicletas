@@ -1,4 +1,4 @@
-package com.douc.conexion;
+package com.duoc.conexion;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

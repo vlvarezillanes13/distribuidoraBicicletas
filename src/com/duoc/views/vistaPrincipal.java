@@ -1,7 +1,7 @@
 
 package com.duoc.views;
 
-import com.douc.generics.Generics;
+import com.duoc.generics.Generics;
 import com.duoc.models.Bicicleta;
 import com.duoc.models.Categoria;
 import com.duoc.models.Fabricante;
@@ -13,6 +13,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
     JScrollPane scrollpane;
     
     public vistaPrincipal() {
+        setLocationRelativeTo(null);
         setTitle("Menú Principal");
         initComponents();
         
@@ -747,9 +748,8 @@ public class vistaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuBicicletasActionPerformed
 
     private void MenuIntegrantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuIntegrantesActionPerformed
-        //acercaDe p = new acercaDe();
-        //this.getContentPane().add(p);
-        //p.setBounds(100, 120, 700, 300);
+        acercaDe ad = new acercaDe();
+        ad.setVisible(true);
     }//GEN-LAST:event_MenuIntegrantesActionPerformed
 
 
