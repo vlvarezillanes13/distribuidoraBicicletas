@@ -21,6 +21,9 @@ public class vistaPrincipal extends javax.swing.JFrame {
         
         //Usuario ingresado
         this.user = usuario;
+        if(this.user.getCargo().equals("funcionario")){
+            desactivarBtn();
+        }
         
         //ESCONDER MENÚ
         this.jInternalFrameFabricante.setVisible(false);
@@ -785,6 +788,19 @@ public class vistaPrincipal extends javax.swing.JFrame {
         this.txtIDC.setText("");
         this.txtNombreF.setText("");
         this.txtNombreC.setText("");
+    }
+    
+    
+    private void desactivarBtn(){
+        this.btnAgregarFabricante.setEnabled(false);
+        this.btnAgregarCategoria.setEnabled(false);
+        this.btnAgregarBicicleta.setEnabled(false);
+        this.btnModificarFabricante.setEnabled(false);
+        this.btnModificarCategoria.setEnabled(false);
+        this.btnModificarBicicleta.setEnabled(false);
+        this.btnEliminarFabricante.setEnabled(false);
+        this.btnEliminarCategoria.setEnabled(false);
+        this.btnEliminarBicicleta.setEnabled(false);
     }
     
     
