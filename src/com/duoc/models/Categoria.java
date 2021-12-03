@@ -97,7 +97,7 @@ public class Categoria {
                     JOptionPane.showMessageDialog(null, "Categoria modificado satisfactoriamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                     if (Generics.limpiarDatos(tablaCategorias)) {
                         cargarTablaCategoria(tablaCategorias);
-                        Generics.limpiezaDatos(txtNombre);
+                        Generics.limpiezaDatos(txtID,txtNombre);
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "No se pudo modificar el categoria", "Mensaje", JOptionPane.ERROR_MESSAGE);
@@ -121,7 +121,7 @@ public class Categoria {
                     JOptionPane.showMessageDialog(null, "Categoria eliminar satisfactoriamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                     if (Generics.limpiarDatos(tablaCategorias)) {
                         cargarTablaCategoria(tablaCategorias);
-                        Generics.limpiezaDatos(txtNombre);
+                        Generics.limpiezaDatos(txtID,txtNombre);
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "No se pudo eliminar el categoria", "Mensaje", JOptionPane.ERROR_MESSAGE);

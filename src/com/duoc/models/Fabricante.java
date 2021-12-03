@@ -96,7 +96,7 @@ public class Fabricante {
                     JOptionPane.showMessageDialog(null, "Fabricante modificado satisfactoriamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                     if (Generics.limpiarDatos(tablaFabricas)) {
                         cargarTablaFabrica(tablaFabricas);
-                        Generics.limpiezaDatos(txtNombre);
+                        Generics.limpiezaDatos(txtID,txtNombre);
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "No se pudo modificar el fabricante", "Mensaje", JOptionPane.ERROR_MESSAGE);
@@ -120,7 +120,7 @@ public class Fabricante {
                     JOptionPane.showMessageDialog(null, "Fabricante eliminado satisfactoriamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                     if (Generics.limpiarDatos(tablaFabricas)) {
                         cargarTablaFabrica(tablaFabricas);
-                        Generics.limpiezaDatos(txtNombre);
+                        Generics.limpiezaDatos(txtID,txtNombre);
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "No se pudo eliminar el fabricante", "Mensaje", JOptionPane.ERROR_MESSAGE);
