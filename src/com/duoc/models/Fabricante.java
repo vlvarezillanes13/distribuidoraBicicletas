@@ -8,41 +8,41 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class Fabricante {
-
+    
     private static FabricaController fc = new FabricaController();
     private int ID;
     private String nombre;
-
+    
     public Fabricante() {
     }
-
+    
     public Fabricante(String nombre) {
         this.nombre = nombre;
     }
-
+    
     public Fabricante(int ID, String nombre) {
         this.ID = ID;
         this.nombre = nombre;
     }
-
+    
     public int getID() {
         return ID;
     }
-
+    
     public void setID(int ID) {
         this.ID = ID;
     }
-
+    
     public String getNombre() {
         return nombre;
     }
-
+    
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
+    
     public static void cargarTablaFabrica(javax.swing.JTable tablaFabricas) {
-
+        
         try {
             ArrayList<Fabricante> fabricas = fc.obtenerFabricantes();
             DefaultTableModel modelo = new DefaultTableModel();
@@ -60,7 +60,7 @@ public class Fabricante {
             JOptionPane.showMessageDialog(null, "Problemas con la conexión a la base de datos", "Mensajes", JOptionPane.ERROR_MESSAGE);
         }
     }
-
+    
     public static void registrarFabricante(javax.swing.JTextField txtNombre, javax.swing.JInternalFrame Fabricantes, javax.swing.JTable tablaFabricas) {
         if (txtNombre.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Ingrese Nombre.", "Mensaje", JOptionPane.ERROR_MESSAGE);
@@ -82,9 +82,9 @@ public class Fabricante {
             }
         }
     }
-
+    
     public static void modificarFabricante(javax.swing.JTextField txtID, javax.swing.JTextField txtNombre, javax.swing.JInternalFrame Fabricantes, javax.swing.JTable tablaFabricas) {
-
+        
         if (txtID.getText().equals("") || txtNombre.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Seleccione fabricante de la tabla FABRICANTES", "Mensaje", JOptionPane.ERROR_MESSAGE);
         } else {
@@ -106,9 +106,9 @@ public class Fabricante {
             }
         }
     }
-
+    
     public static void eliminarFabricante(javax.swing.JTextField txtID, javax.swing.JTextField txtNombre, javax.swing.JInternalFrame Fabricantes, javax.swing.JTable tablaFabricas, javax.swing.JTextField txtBC) {
-
+        
         if (txtID.getText().equals("") || txtNombre.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Seleccione fabricante de la tabla FABRICANTES", "Mensaje", JOptionPane.ERROR_MESSAGE);
         } else {
@@ -130,7 +130,7 @@ public class Fabricante {
             }
         }
     }
-
+    
     public static void generarFiltroBusqueda(javax.swing.JTextField txtFiltro, javax.swing.JComboBox tipo, javax.swing.JTable tablaFabricas) {
         if (txtFiltro.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "No se ingreso filtro\n Se mostrar todos los registros", "Mensaje", JOptionPane.ERROR_MESSAGE);
@@ -161,7 +161,7 @@ public class Fabricante {
                             modelo.addRow(fila);
                         }
                     }
-
+                    
                 }
                 tablaFabricas.setModel(modelo);
                 modelo.fireTableDataChanged();
@@ -169,6 +169,6 @@ public class Fabricante {
                 JOptionPane.showMessageDialog(null, ex.getMessage(), "Mensajes", JOptionPane.ERROR_MESSAGE);
             }
         }
-
+        
     }
 }

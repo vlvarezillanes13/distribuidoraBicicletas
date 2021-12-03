@@ -265,4 +265,101 @@ public class Bicicleta {
             }
         }
     }
+
+    public static void generarFiltroBusqueda(javax.swing.JTextField txtFiltro, javax.swing.JComboBox tipo, javax.swing.JTable tablaBicicletas) {
+        if (txtFiltro.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "No se ingreso filtro\n Se mostrar todos los registros", "Mensaje", JOptionPane.ERROR_MESSAGE);
+            cargarTablaBicicleta(tablaBicicletas);
+        } else {
+            try {
+                String busqueda = txtFiltro.getText();
+                String filtro = tipo.getSelectedItem().toString();
+                ArrayList<Bicicleta> bicis = bc.obtenerBicicletas();
+                DefaultTableModel modelo = new DefaultTableModel();
+                modelo.addColumn("Codigo");
+                modelo.addColumn("Modelo");
+                modelo.addColumn("Talla");
+                modelo.addColumn("Suspension");
+                modelo.addColumn("Transmision");
+                modelo.addColumn("Frenos");
+                modelo.addColumn("Stock");
+                modelo.addColumn("Valor");
+                modelo.addColumn("Fabricante");
+                modelo.addColumn("Categoria");
+                for (Bicicleta b : bicis) {
+                    if (filtro.equals("ID")) {
+                        String ID = b.ID + "";
+                        if (ID.contains(busqueda)) {
+                            Object fila[] = new Object[10];
+                            fila[0] = b.getID();
+                            fila[1] = b.getModelo();
+                            fila[2] = b.getTalla();
+                            fila[3] = b.getSuspension();
+                            fila[4] = b.getTransmicion();
+                            fila[5] = b.getFrenos();
+                            fila[6] = b.getStock();
+                            fila[7] = b.getValor();
+                            fila[8] = b.getFabricante();
+                            fila[9] = b.getCategoria();
+                            modelo.addRow(fila);
+                        }
+                    } else if (filtro.equals("Modelo")) {
+                        String modelo_b = b.modelo;
+                        if (modelo_b.contains(busqueda)) {
+                            Object fila[] = new Object[10];
+                            fila[0] = b.getID();
+                            fila[1] = b.getModelo();
+                            fila[2] = b.getTalla();
+                            fila[3] = b.getSuspension();
+                            fila[4] = b.getTransmicion();
+                            fila[5] = b.getFrenos();
+                            fila[6] = b.getStock();
+                            fila[7] = b.getValor();
+                            fila[8] = b.getFabricante();
+                            fila[9] = b.getCategoria();
+                            modelo.addRow(fila);
+                        }
+                    } else if (filtro.equals("Stock")) {
+                        String stock_b = b.stock + "";
+                        if (stock_b.contains(busqueda)) {
+                            Object fila[] = new Object[10];
+                            fila[0] = b.getID();
+                            fila[1] = b.getModelo();
+                            fila[2] = b.getTalla();
+                            fila[3] = b.getSuspension();
+                            fila[4] = b.getTransmicion();
+                            fila[5] = b.getFrenos();
+                            fila[6] = b.getStock();
+                            fila[7] = b.getValor();
+                            fila[8] = b.getFabricante();
+                            fila[9] = b.getCategoria();
+                            modelo.addRow(fila);
+                        }
+                    } else {
+                        String valor_b = b.valor + "";
+                        if (valor_b.contains(busqueda)) {
+                            Object fila[] = new Object[10];
+                            fila[0] = b.getID();
+                            fila[1] = b.getModelo();
+                            fila[2] = b.getTalla();
+                            fila[3] = b.getSuspension();
+                            fila[4] = b.getTransmicion();
+                            fila[5] = b.getFrenos();
+                            fila[6] = b.getStock();
+                            fila[7] = b.getValor();
+                            fila[8] = b.getFabricante();
+                            fila[9] = b.getCategoria();
+                            modelo.addRow(fila);
+                        }
+                    }
+
+                }
+                tablaBicicletas.setModel(modelo);
+                modelo.fireTableDataChanged();
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Mensajes", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+
+    }
 }

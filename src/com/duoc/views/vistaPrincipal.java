@@ -851,7 +851,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFiltrarCatActionPerformed
 
     private void btnFiltrarBiciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarBiciActionPerformed
-        // TODO add your handling code here:
+        Bicicleta.generarFiltroBusqueda(txtFiltrarBici, ComboBoxBici, tablaBicicleta);
     }//GEN-LAST:event_btnFiltrarBiciActionPerformed
 
 

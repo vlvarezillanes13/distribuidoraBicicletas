@@ -131,8 +131,8 @@ public class Categoria {
             }
         }
     }
-    
-     public static void generarFiltroBusqueda(javax.swing.JTextField txtFiltro, javax.swing.JComboBox tipo, javax.swing.JTable tablaCategoria) {
+
+    public static void generarFiltroBusqueda(javax.swing.JTextField txtFiltro, javax.swing.JComboBox tipo, javax.swing.JTable tablaCategoria) {
         if (txtFiltro.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "No se ingreso filtro\n Se mostrar todos los registros", "Mensaje", JOptionPane.ERROR_MESSAGE);
             cargarTablaCategoria(tablaCategoria);
