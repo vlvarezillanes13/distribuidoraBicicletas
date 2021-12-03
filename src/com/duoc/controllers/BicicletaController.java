@@ -37,7 +37,7 @@ public class BicicletaController {
         }
         catch(SQLException ex)
         {
-            System.out.println("Error obtener categorias: "+ex);
+            System.out.println("Error obtener bicicletas: "+ex);
             return null;
         }
         finally

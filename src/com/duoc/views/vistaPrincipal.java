@@ -19,7 +19,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Menú Principal");
-        setExtendedState(this.MAXIMIZED_BOTH);
+        setExtendedState(vistaPrincipal.MAXIMIZED_BOTH);
         //setExtendedState(this.ICONIFIED);
         
         //Usuario ingresado
@@ -268,7 +268,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
                     .addComponent(txtFiltrarFab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 21, Short.MAX_VALUE))
+                .addGap(0, 18, Short.MAX_VALUE))
         );
 
         jInternalFrameCategorias.setClosable(true);
@@ -334,7 +334,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        ComboBoxCat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Nombre" }));
+        ComboBoxCat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Descripcion" }));
 
         javax.swing.GroupLayout jInternalFrameCategoriasLayout = new javax.swing.GroupLayout(jInternalFrameCategorias.getContentPane());
         jInternalFrameCategorias.getContentPane().setLayout(jInternalFrameCategoriasLayout);
@@ -395,7 +395,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
                     .addComponent(txtFiltrarCat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 18, Short.MAX_VALUE))
+                .addGap(0, 21, Short.MAX_VALUE))
         );
 
         jInternalFrameBicicletas.setClosable(true);
@@ -404,6 +404,8 @@ public class vistaPrincipal extends javax.swing.JFrame {
 
         tablaBicicleta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null},
@@ -417,7 +419,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, true, true, true
+                false, false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -432,6 +434,14 @@ public class vistaPrincipal extends javax.swing.JFrame {
         if (tablaBicicleta.getColumnModel().getColumnCount() > 0) {
             tablaBicicleta.getColumnModel().getColumn(0).setResizable(false);
             tablaBicicleta.getColumnModel().getColumn(1).setResizable(false);
+            tablaBicicleta.getColumnModel().getColumn(2).setResizable(false);
+            tablaBicicleta.getColumnModel().getColumn(3).setResizable(false);
+            tablaBicicleta.getColumnModel().getColumn(4).setResizable(false);
+            tablaBicicleta.getColumnModel().getColumn(5).setResizable(false);
+            tablaBicicleta.getColumnModel().getColumn(6).setResizable(false);
+            tablaBicicleta.getColumnModel().getColumn(7).setResizable(false);
+            tablaBicicleta.getColumnModel().getColumn(8).setResizable(false);
+            tablaBicicleta.getColumnModel().getColumn(9).setResizable(false);
         }
 
         jLabel5.setText("ID: ");

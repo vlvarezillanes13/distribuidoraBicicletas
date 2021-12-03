@@ -135,7 +135,7 @@ public class Bicicleta {
         {
             ArrayList<Bicicleta> bicicletas = bc.obtenerBicicletas();
             DefaultTableModel modelo = new DefaultTableModel();
-            modelo.addColumn("Código");
+            modelo.addColumn("Codigo");
             modelo.addColumn("Modelo");
             modelo.addColumn("Talla");
             modelo.addColumn("Suspension");

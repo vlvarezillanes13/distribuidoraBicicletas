@@ -111,6 +111,9 @@ public class Generics {
                     case "Nombre":
                         col = 1;
                         break;
+                    case "Descripcion":
+                        col=1;
+                        break;
                     default:
                         col = 1;
                         break;
