@@ -18,6 +18,8 @@ public class vistaPrincipal extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Menú Principal");
+        setExtendedState(this.MAXIMIZED_BOTH);
+        //setExtendedState(this.ICONIFIED);
         
         //Usuario ingresado
         this.user = usuario;
