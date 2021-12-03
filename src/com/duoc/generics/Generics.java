@@ -1,12 +1,18 @@
 package com.duoc.generics;
 
 import java.awt.Point;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JTable;
+import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 public class Generics {
-
+    private TableRowSorter trs;
+    
     public static void limpiezaDatos(javax.swing.JTextField txt1, javax.swing.JTextField txt2, javax.swing.JTextField txt3, javax.swing.JTextField txt4, javax.swing.JTextField txt5, javax.swing.JTextField txt6, javax.swing.JTextField txt7, javax.swing.JTextField txt8, javax.swing.JTextField txt9, javax.swing.JTextField txt10) {
         txt1.setText("");
         txt2.setText("");
@@ -86,5 +92,35 @@ public class Generics {
                 }
             }
         });
+    }
+    
+    public void tableFilter(javax.swing.JTable tablaBusqueda, javax.swing.JTextField txtBusqueda, javax.swing.JComboBox opcBusqueda){
+        
+        DefaultTableModel modelo = (DefaultTableModel) tablaBusqueda.getModel();
+        
+        txtBusqueda.addKeyListener(new KeyAdapter(){
+            @Override
+            public void keyReleased( KeyEvent ke){
+                String busqueda = txtBusqueda.getText();
+                String tipo = opcBusqueda.getSelectedItem().toString();
+                int col;
+                switch(tipo){
+                    case "ID":
+                        col = 0;
+                        break;
+                    case "Nombre":
+                        col = 1;
+                        break;
+                    default:
+                        col = 1;
+                        break;
+                }
+  
+                trs.setRowFilter(RowFilter.regexFilter("(?i)"+busqueda, col));
+            }
+        });
+        
+        trs = new TableRowSorter(modelo);
+        tablaBusqueda.setRowSorter(trs);
     }
 }

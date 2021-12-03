@@ -57,6 +57,12 @@ public class vistaPrincipal extends javax.swing.JFrame {
         
         //AGREGAR CLICK A TABLA BICICLETAS
         Generics.mouseListerner(tablaBicicleta, txtIDB, txtModelo, txtTalla, txtSuspen, txtTrans, txtFrenos, txtStock, txtValor, TXTIDC_BICI, TXTIDF_BICI);
+        
+        //FILTRAR FABRICANTES
+        Generics G1 = new Generics();
+        G1.tableFilter(tablaFabricas, txtFiltrarFab, ComboBoxFab);
+        Generics G2 = new Generics();
+        G2.tableFilter(tablaCategoria, txtFiltrarCat, ComboBoxCat);
     }
 
 
@@ -74,8 +80,8 @@ public class vistaPrincipal extends javax.swing.JFrame {
         btnAgregarFabricante = new javax.swing.JButton();
         btnModificarFabricante = new javax.swing.JButton();
         btnEliminarFabricante = new javax.swing.JButton();
-        jTextField6 = new javax.swing.JTextField();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        txtFiltrarFab = new javax.swing.JTextField();
+        ComboBoxFab = new javax.swing.JComboBox<>();
         jInternalFrameCategorias = new javax.swing.JInternalFrame();
         jScrollPane4 = new javax.swing.JScrollPane();
         tablaCategoria = new javax.swing.JTable();
@@ -86,8 +92,8 @@ public class vistaPrincipal extends javax.swing.JFrame {
         btnAgregarCategoria = new javax.swing.JButton();
         btnModificarCategoria = new javax.swing.JButton();
         btnEliminarCategoria = new javax.swing.JButton();
-        jTextField12 = new javax.swing.JTextField();
-        jComboBox5 = new javax.swing.JComboBox<>();
+        txtFiltrarCat = new javax.swing.JTextField();
+        ComboBoxCat = new javax.swing.JComboBox<>();
         jInternalFrameBicicletas = new javax.swing.JInternalFrame();
         jScrollPane3 = new javax.swing.JScrollPane();
         tablaBicicleta = new javax.swing.JTable();
@@ -194,7 +200,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Nombre" }));
+        ComboBoxFab.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Nombre" }));
 
         javax.swing.GroupLayout jInternalFrameFabricanteLayout = new javax.swing.GroupLayout(jInternalFrameFabricante.getContentPane());
         jInternalFrameFabricante.getContentPane().setLayout(jInternalFrameFabricanteLayout);
@@ -227,9 +233,9 @@ public class vistaPrincipal extends javax.swing.JFrame {
                                     .addComponent(txtIDF)))
                             .addGroup(jInternalFrameFabricanteLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(ComboBoxFab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtFiltrarFab, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 35, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -251,8 +257,8 @@ public class vistaPrincipal extends javax.swing.JFrame {
                     .addComponent(btnEliminarFabricante, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(jInternalFrameFabricanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ComboBoxFab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFiltrarFab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 6, Short.MAX_VALUE))
@@ -321,7 +327,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Nombre" }));
+        ComboBoxCat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Nombre" }));
 
         javax.swing.GroupLayout jInternalFrameCategoriasLayout = new javax.swing.GroupLayout(jInternalFrameCategorias.getContentPane());
         jInternalFrameCategorias.getContentPane().setLayout(jInternalFrameCategoriasLayout);
@@ -354,9 +360,9 @@ public class vistaPrincipal extends javax.swing.JFrame {
                                     .addComponent(txtNombreC)))
                             .addGroup(jInternalFrameCategoriasLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(ComboBoxCat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtFiltrarCat, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -378,8 +384,8 @@ public class vistaPrincipal extends javax.swing.JFrame {
                     .addComponent(btnEliminarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(jInternalFrameCategoriasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ComboBoxCat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFiltrarCat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 3, Short.MAX_VALUE))
@@ -816,6 +822,8 @@ public class vistaPrincipal extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> ComboBoxCat;
+    private javax.swing.JComboBox<String> ComboBoxFab;
     private javax.swing.JMenuItem MenuBicicletas;
     private javax.swing.JMenuBar MenuCategorias;
     private javax.swing.JMenuItem MenuCerrarSesion;
@@ -832,9 +840,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnModificarBicicleta;
     private javax.swing.JButton btnModificarCategoria;
     private javax.swing.JButton btnModificarFabricante;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
-    private javax.swing.JComboBox<String> jComboBox5;
     private javax.swing.JInternalFrame jInternalFrameBicicletas;
     private javax.swing.JInternalFrame jInternalFrameCategorias;
     private javax.swing.JInternalFrame jInternalFrameFabricante;
@@ -862,12 +868,12 @@ public class vistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField9;
     private javax.swing.JTable tablaBicicleta;
     private javax.swing.JTable tablaCategoria;
     private javax.swing.JTable tablaFabricas;
+    private javax.swing.JTextField txtFiltrarCat;
+    private javax.swing.JTextField txtFiltrarFab;
     private javax.swing.JTextField txtFrenos;
     private javax.swing.JTextField txtIDB;
     private javax.swing.JTextField txtIDC;
