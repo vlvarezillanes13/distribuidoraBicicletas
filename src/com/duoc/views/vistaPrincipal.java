@@ -250,7 +250,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 57, Short.MAX_VALUE))
+                .addGap(0, 6, Short.MAX_VALUE))
         );
 
         jInternalFrameCategorias.setClosable(true);
@@ -377,7 +377,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
                     .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 60, Short.MAX_VALUE))
+                .addGap(0, 3, Short.MAX_VALUE))
         );
 
         jInternalFrameBicicletas.setClosable(true);
@@ -607,11 +607,12 @@ public class vistaPrincipal extends javax.swing.JFrame {
                                     .addComponent(TXTIDC_BICI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 111, Short.MAX_VALUE))
+                .addGap(0, 132, Short.MAX_VALUE))
         );
 
         jMenu1.setText("Fabricante");
 
+        MenuFabricantes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/duoc/static/img/fab.jpg"))); // NOI18N
         MenuFabricantes.setText("VER FABRICANTES");
         MenuFabricantes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -624,6 +625,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
 
         jMenu2.setText("Categoria");
 
+        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/duoc/static/img/categoria.jpg"))); // NOI18N
         jMenuItem9.setText("VER CATEGORIAS");
         jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -636,6 +638,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
 
         jMenu3.setText("Bicicleta");
 
+        MenuBicicletas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/duoc/static/img/bici.jpg"))); // NOI18N
         MenuBicicletas.setText("VER BICICLETAS");
         MenuBicicletas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -648,6 +651,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
 
         jMenu5.setText("Acerca de");
 
+        MenuIntegrantes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/duoc/static/img/acercaDe.jpg"))); // NOI18N
         MenuIntegrantes.setText("VER INTEGRANTES");
         MenuIntegrantes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -670,6 +674,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItem1);
 
+        MenuCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/duoc/static/img/logout.jpg"))); // NOI18N
         MenuCerrarSesion.setText("Cerrar Sesion");
         MenuCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
