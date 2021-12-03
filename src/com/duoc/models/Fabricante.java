@@ -61,20 +61,24 @@ public class Fabricante {
     }
 
     public static void registrarFabricante(javax.swing.JTextField txtNombre, javax.swing.JInternalFrame Fabricantes,javax.swing.JTable tablaFabricas) {
-        try {
-            String nombreFabricante = txtNombre.getText();
-            Fabricante fabricante = new Fabricante(nombreFabricante);
-            if (fc.crearFabricante(fabricante)) {
-                JOptionPane.showMessageDialog(null, "Fabricante registrado satisfactoriamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
-                Generics.limpiezaDatos(txtNombre);
-                if (Fabricantes.isVisible()) {
-                    cargarTablaFabrica(tablaFabricas);
+        if(txtNombre.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Ingrese Nombre.", "Mensaje", JOptionPane.ERROR_MESSAGE);
+        }else{
+            try {
+                String nombreFabricante = txtNombre.getText();
+                Fabricante fabricante = new Fabricante(nombreFabricante);
+                if (fc.crearFabricante(fabricante)) {
+                    JOptionPane.showMessageDialog(null, "Fabricante registrado satisfactoriamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                    Generics.limpiezaDatos(txtNombre);
+                    if (Fabricantes.isVisible()) {
+                        cargarTablaFabrica(tablaFabricas);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se pudo registrar el fabricante.", "Mensaje", JOptionPane.ERROR_MESSAGE);
                 }
-            } else {
-                JOptionPane.showMessageDialog(null, "No se pudo registrar el fabricante.", "Mensaje", JOptionPane.ERROR_MESSAGE);
+            } catch (HeadlessException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Mensaje", JOptionPane.ERROR_MESSAGE);
             }
-        } catch (HeadlessException ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "Mensaje", JOptionPane.ERROR_MESSAGE);
         }
     }
     

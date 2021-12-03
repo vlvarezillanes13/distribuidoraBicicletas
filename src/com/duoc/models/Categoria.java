@@ -61,20 +61,25 @@ public class Categoria {
     }
 
     public static void registrarCategoria(javax.swing.JTextField txtNombre, javax.swing.JInternalFrame Categorias, javax.swing.JTable tablaCategorias) {
-        try {
-            String nombreCategoria = txtNombre.getText();
-            Categoria categoria = new Categoria(nombreCategoria);
-            if (cc.crearCategoria(categoria)) {
-                JOptionPane.showMessageDialog(null, "Categoria registrado satisfactoriamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
-                Generics.limpiezaDatos(txtNombre);
-                if (Categorias.isVisible()) {
-                    cargarTablaCategoria(tablaCategorias);
+        if(txtNombre.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Ingrese Descripcion.", "Mensaje", JOptionPane.ERROR_MESSAGE);
+        }else{
+                   
+            try {
+                String nombreCategoria = txtNombre.getText();
+                Categoria categoria = new Categoria(nombreCategoria);
+                if (cc.crearCategoria(categoria)) {
+                    JOptionPane.showMessageDialog(null, "Categoria registrado satisfactoriamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                    Generics.limpiezaDatos(txtNombre);
+                    if (Categorias.isVisible()) {
+                        cargarTablaCategoria(tablaCategorias);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se pudo registrar la categoria.", "Mensaje", JOptionPane.ERROR_MESSAGE);
                 }
-            } else {
-                JOptionPane.showMessageDialog(null, "No se pudo registrar la categoria.", "Mensaje", JOptionPane.ERROR_MESSAGE);
+            } catch (HeadlessException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Mensaje", JOptionPane.ERROR_MESSAGE);
             }
-        } catch (HeadlessException ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "Mensaje", JOptionPane.ERROR_MESSAGE);
         }
     }
     

@@ -173,6 +173,8 @@ public class Bicicleta {
             JOptionPane.showMessageDialog(null, "Debe seleccionar CATEGORIA de la tabla.", "Mensaje", JOptionPane.ERROR_MESSAGE);
         }else if(txtFab.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Debe seleccionar FABRICANTE de la tabla.", "Mensaje", JOptionPane.ERROR_MESSAGE);
+        }else if(txtModelo.getText().equals("") && txtTalla.getText().equals("") && txtSuspen.getText().equals("") && txtTrans.getText().equals("") && txtFrenos.getText().equals("") && txtStock.getText().equals("")  && txtValor.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "RELLENAR TODOS LOS DATOS.", "Mensaje", JOptionPane.ERROR_MESSAGE);
         }else{
             try {
                     String modeloBici = txtModelo.getText();
