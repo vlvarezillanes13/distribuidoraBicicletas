@@ -14,12 +14,18 @@ public class vistaPrincipal extends javax.swing.JFrame {
     
     public vistaPrincipal() {
         initComponents();
+        
+        this.jInternalFrameFabricante.setVisible(false);
+        this.jInternalFrameCategorias.setVisible(false);
+        this.jInternalFrameBicicletas.setVisible(false);
+        
+        
         //Agregar Scroll  a Jpanel Bicicletas
         scrollpane = new JScrollPane();
         scrollpane.setBounds(5,380, 1364, 230);
         scrollpane.setViewportView(jInternalFrameBicicletas);
         jInternalFrameBicicletas.setPreferredSize(new Dimension(350,350));
-        this.add(scrollpane);
+        //this.add(scrollpane);
         
         //Listar Fabricas
         Fabricante.cargarTablaFabrica(tablaFabricas);
@@ -69,7 +75,6 @@ public class vistaPrincipal extends javax.swing.JFrame {
         btnEliminarCategoria = new javax.swing.JButton();
         jTextField12 = new javax.swing.JTextField();
         jComboBox5 = new javax.swing.JComboBox<>();
-        jToolBar1 = new javax.swing.JToolBar();
         jInternalFrameBicicletas = new javax.swing.JInternalFrame();
         jScrollPane3 = new javax.swing.JScrollPane();
         tablaBicicleta = new javax.swing.JTable();
@@ -98,22 +103,13 @@ public class vistaPrincipal extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         TXTIDC_BICI = new javax.swing.JTextField();
         TXTIDF_BICI = new javax.swing.JTextField();
-        jMenuBar1 = new javax.swing.JMenuBar();
+        MenuCategorias = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        MenuFabricantes = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem10 = new javax.swing.JMenuItem();
-        jMenuItem11 = new javax.swing.JMenuItem();
-        jMenuItem12 = new javax.swing.JMenuItem();
-        jMenuItem13 = new javax.swing.JMenuItem();
+        MenuBicicletas = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -369,10 +365,8 @@ public class vistaPrincipal extends javax.swing.JFrame {
                     .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+                .addGap(0, 12, Short.MAX_VALUE))
         );
-
-        jToolBar1.setRollover(true);
 
         jInternalFrameBicicletas.setTitle("BICICLETAS");
         jInternalFrameBicicletas.setVisible(true);
@@ -600,59 +594,47 @@ public class vistaPrincipal extends javax.swing.JFrame {
                                     .addComponent(TXTIDC_BICI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 12, Short.MAX_VALUE))
+                .addGap(0, 63, Short.MAX_VALUE))
         );
 
         jMenu1.setText("Fabricante");
 
-        jMenuItem3.setText("Registrar");
-        jMenu1.add(jMenuItem3);
+        MenuFabricantes.setText("VER FABRICANTES");
+        MenuFabricantes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuFabricantesActionPerformed(evt);
+            }
+        });
+        jMenu1.add(MenuFabricantes);
 
-        jMenuItem4.setText("Actualizar");
-        jMenu1.add(jMenuItem4);
-
-        jMenuItem5.setText("Eliminar");
-        jMenu1.add(jMenuItem5);
-
-        jMenuItem6.setText("Listar");
-        jMenu1.add(jMenuItem6);
-
-        jMenuBar1.add(jMenu1);
+        MenuCategorias.add(jMenu1);
 
         jMenu2.setText("Categoria");
 
-        jMenuItem2.setText("Registrar");
-        jMenu2.add(jMenuItem2);
-
-        jMenuItem7.setText("Actualizar");
-        jMenu2.add(jMenuItem7);
-
-        jMenuItem8.setText("Eliminar");
-        jMenu2.add(jMenuItem8);
-
-        jMenuItem9.setText("Actualizar");
+        jMenuItem9.setText("VER CATEGORIAS");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem9);
 
-        jMenuBar1.add(jMenu2);
+        MenuCategorias.add(jMenu2);
 
         jMenu3.setText("Bicicleta");
 
-        jMenuItem10.setText("Registrar");
-        jMenu3.add(jMenuItem10);
+        MenuBicicletas.setText("VER BICICLETAS");
+        MenuBicicletas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuBicicletasActionPerformed(evt);
+            }
+        });
+        jMenu3.add(MenuBicicletas);
 
-        jMenuItem11.setText("Actualizar");
-        jMenu3.add(jMenuItem11);
-
-        jMenuItem12.setText("Eliminar");
-        jMenu3.add(jMenuItem12);
-
-        jMenuItem13.setText("Listar");
-        jMenu3.add(jMenuItem13);
-
-        jMenuBar1.add(jMenu3);
+        MenuCategorias.add(jMenu3);
 
         jMenu5.setText("Acerca de");
-        jMenuBar1.add(jMenu5);
+        MenuCategorias.add(jMenu5);
 
         jMenu4.setText("Salir");
 
@@ -666,18 +648,14 @@ public class vistaPrincipal extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItem1);
 
-        jMenuBar1.add(jMenu4);
+        MenuCategorias.add(jMenu4);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(MenuCategorias);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1266, Short.MAX_VALUE))
             .addComponent(jInternalFrameBicicletas)
             .addGroup(layout.createSequentialGroup()
                 .addGap(74, 74, 74)
@@ -694,8 +672,6 @@ public class vistaPrincipal extends javax.swing.JFrame {
                     .addComponent(jInternalFrameCategorias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(3, 3, 3)
                 .addComponent(jInternalFrameBicicletas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -743,6 +719,19 @@ public class vistaPrincipal extends javax.swing.JFrame {
        Bicicleta.eliminarBicicleta(txtIDB, txtModelo, txtTalla, txtSuspen, txtTrans, txtFrenos, txtStock, txtValor, TXTIDC_BICI, TXTIDF_BICI, jInternalFrameBicicletas, tablaBicicleta);
     }//GEN-LAST:event_btnEliminarBicicletaActionPerformed
 
+    private void MenuFabricantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuFabricantesActionPerformed
+       this.jInternalFrameFabricante.setVisible(true);
+    }//GEN-LAST:event_MenuFabricantesActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        this.jInternalFrameCategorias.setVisible(true);
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void MenuBicicletasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuBicicletasActionPerformed
+        this.jInternalFrameBicicletas.setVisible(true);
+        this.add(scrollpane);
+    }//GEN-LAST:event_MenuBicicletasActionPerformed
+
 
     
     private void limpiarFabCat(){
@@ -763,6 +752,9 @@ public class vistaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem MenuBicicletas;
+    private javax.swing.JMenuBar MenuCategorias;
+    private javax.swing.JMenuItem MenuFabricantes;
     private javax.swing.JTextField TXTIDC_BICI;
     private javax.swing.JTextField TXTIDF_BICI;
     private javax.swing.JButton btnAgregarBicicleta;
@@ -799,19 +791,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem12;
-    private javax.swing.JMenuItem jMenuItem13;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -819,7 +799,6 @@ public class vistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField9;
-    private javax.swing.JToolBar jToolBar1;
     private javax.swing.JTable tablaBicicleta;
     private javax.swing.JTable tablaCategoria;
     private javax.swing.JTable tablaFabricas;
