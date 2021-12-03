@@ -116,6 +116,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jInternalFrameFabricante.setClosable(true);
         jInternalFrameFabricante.setTitle("FABRICANTES");
         jInternalFrameFabricante.setVisible(true);
 
@@ -239,9 +240,10 @@ public class vistaPrincipal extends javax.swing.JFrame {
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 9, Short.MAX_VALUE))
+                .addGap(0, 21, Short.MAX_VALUE))
         );
 
+        jInternalFrameCategorias.setClosable(true);
         jInternalFrameCategorias.setTitle("CATEGORIAS");
         jInternalFrameCategorias.setVisible(true);
 
@@ -365,9 +367,10 @@ public class vistaPrincipal extends javax.swing.JFrame {
                     .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 12, Short.MAX_VALUE))
+                .addGap(0, 24, Short.MAX_VALUE))
         );
 
+        jInternalFrameBicicletas.setClosable(true);
         jInternalFrameBicicletas.setTitle("BICICLETAS");
         jInternalFrameBicicletas.setVisible(true);
 
@@ -594,7 +597,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
                                     .addComponent(TXTIDC_BICI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 63, Short.MAX_VALUE))
+                .addGap(0, 75, Short.MAX_VALUE))
         );
 
         jMenu1.setText("Fabricante");
