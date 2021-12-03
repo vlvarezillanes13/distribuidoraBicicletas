@@ -10,6 +10,7 @@ public class controlAcceso extends javax.swing.JFrame {
     public controlAcceso() {
         initComponents();
         setLocationRelativeTo(null);
+        setResizable(false);
         setTitle("Inicio de Sesión");
     }
 

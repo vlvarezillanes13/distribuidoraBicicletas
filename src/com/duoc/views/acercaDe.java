@@ -14,9 +14,10 @@ public class acercaDe extends javax.swing.JFrame {
      * Creates new form acercaDe
      */
     public acercaDe() {
+        initComponents();
         setLocationRelativeTo(null);
         setTitle("INTEGRANTES");
-        initComponents();
+        setResizable(false);
     }
 
     /**
