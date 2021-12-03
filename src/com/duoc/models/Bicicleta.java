@@ -223,7 +223,7 @@ public class Bicicleta {
                     JOptionPane.showMessageDialog(null, "Bicicleta actualizar satisfactoriamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                     if (Generics.limpiarDatos(tablaBicicleta)) {
                         cargarTablaBicicleta(tablaBicicleta);
-                        Generics.limpiezaDatos(txtModelo, txtTalla, txtSuspen, txtTrans, txtFrenos, txtStock, txtValor, txtCat, txtFab);
+                        Generics.limpiezaDatos(txtID,txtModelo, txtTalla, txtSuspen, txtTrans, txtFrenos, txtStock, txtValor, txtCat, txtFab);
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "No se pudo actualizar el bicicleta.", "Mensaje", JOptionPane.ERROR_MESSAGE);
@@ -255,7 +255,7 @@ public class Bicicleta {
                     JOptionPane.showMessageDialog(null, "Bicicleta eliminada satisfactoriamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                     if (Generics.limpiarDatos(tablaBicicleta)) {
                         cargarTablaBicicleta(tablaBicicleta);
-                        Generics.limpiezaDatos(txtModelo, txtTalla, txtSuspen, txtTrans, txtFrenos, txtStock, txtValor, txtCat, txtFab);
+                        Generics.limpiezaDatos(txtID,txtModelo, txtTalla, txtSuspen, txtTrans, txtFrenos, txtStock, txtValor, txtCat, txtFab);
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "No se pudo eliminar el bicicleta.", "Mensaje", JOptionPane.ERROR_MESSAGE);
