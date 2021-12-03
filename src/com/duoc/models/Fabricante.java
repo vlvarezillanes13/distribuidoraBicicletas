@@ -70,9 +70,7 @@ public class Fabricante {
                 if (fc.crearFabricante(fabricante)) {
                     JOptionPane.showMessageDialog(null, "Fabricante registrado satisfactoriamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                     Generics.limpiezaDatos(txtNombre);
-                    if (Fabricantes.isVisible()) {
-                        cargarTablaFabrica(tablaFabricas);
-                    }
+                    cargarTablaFabrica(tablaFabricas);
                 } else {
                     JOptionPane.showMessageDialog(null, "No se pudo registrar el fabricante.", "Mensaje", JOptionPane.ERROR_MESSAGE);
                 }
@@ -96,10 +94,9 @@ public class Fabricante {
                 {
                     JOptionPane.showMessageDialog(null, "Fabricante modificado satisfactoriamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                     Generics.limpiezaDatos(txtID, txtNombre);
-                    if(Fabricantes.isVisible())
-                    {
-                        cargarTablaFabrica(tablaFabricas);
-                    }
+                   
+                    cargarTablaFabrica(tablaFabricas);
+                    
                 }
                 else
                 {
@@ -126,10 +123,8 @@ public class Fabricante {
                 {
                     JOptionPane.showMessageDialog(null, "Fabricante eliminado satisfactoriamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                     Generics.limpiezaDatos(txtID, txtNombre, txtBC);
-                    if(Fabricantes.isVisible())
-                    {
-                        cargarTablaFabrica(tablaFabricas);
-                    }
+                    cargarTablaFabrica(tablaFabricas);
+                    
                 }
                 else
                 {

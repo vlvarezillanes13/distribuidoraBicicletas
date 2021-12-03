@@ -739,6 +739,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         this.dispose();
+        System.exit(0);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void btnAgregarBicicletaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarBicicletaActionPerformed
@@ -826,6 +827,15 @@ public class vistaPrincipal extends javax.swing.JFrame {
         this.btnEliminarFabricante.setEnabled(false);
         this.btnEliminarCategoria.setEnabled(false);
         this.btnEliminarBicicleta.setEnabled(false);
+        this.txtNombreF.setEnabled(false);
+        this.txtNombreC.setEnabled(false);
+        this.txtModelo.setEnabled(false);
+        this.txtTalla.setEnabled(false);
+        this.txtSuspen.setEnabled(false);
+        this.txtTrans.setEnabled(false);
+        this.txtFrenos.setEnabled(false);
+        this.txtStock.setEnabled(false);
+        this.txtValor.setEnabled(false);
     }
     
     private void listerClose(){

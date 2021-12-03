@@ -173,7 +173,7 @@ public class Bicicleta {
             JOptionPane.showMessageDialog(null, "Debe seleccionar CATEGORIA de la tabla.", "Mensaje", JOptionPane.ERROR_MESSAGE);
         }else if(txtFab.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Debe seleccionar FABRICANTE de la tabla.", "Mensaje", JOptionPane.ERROR_MESSAGE);
-        }else if(txtModelo.getText().equals("") && txtTalla.getText().equals("") && txtSuspen.getText().equals("") && txtTrans.getText().equals("") && txtFrenos.getText().equals("") && txtStock.getText().equals("")  && txtValor.getText().equals("")){
+        }else if(txtModelo.getText().equals("") || txtTalla.getText().equals("") || txtSuspen.getText().equals("") || txtTrans.getText().equals("") || txtFrenos.getText().equals("") || txtStock.getText().equals("")  || txtValor.getText().equals("")){
             JOptionPane.showMessageDialog(null, "RELLENAR TODOS LOS DATOS.", "Mensaje", JOptionPane.ERROR_MESSAGE);
         }else{
             try {
@@ -189,13 +189,11 @@ public class Bicicleta {
 
                     Bicicleta bici = new Bicicleta(modeloBici,tallaoBici,suspenBici,transBici,frenosBici,stockBici,valorBici,catBici,fabBici);
                     if (bc.crearBicicleta(bici)) {
-                        JOptionPane.showMessageDialog(null, "Fabricante registrado satisfactoriamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Bicicleta registrado satisfactoriamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                         Generics.limpiezaDatos(txtModelo,txtTalla,txtSuspen,txtTrans,txtFrenos,txtStock,txtValor,txtCat,txtFab);
-                        if (Bicicletas.isVisible()) {
-                            cargarTablaBicicleta(tablaBicicleta);
-                        }
+                        cargarTablaBicicleta(tablaBicicleta);
                     } else {
-                        JOptionPane.showMessageDialog(null, "No se pudo registrar el fabricante.", "Mensaje", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "No se pudo registrar el Bicicleta.", "Mensaje", JOptionPane.ERROR_MESSAGE);
                     }
                 } catch (HeadlessException | NumberFormatException ex) {
                     JOptionPane.showMessageDialog(null, ex.getMessage(), "Mensaje", JOptionPane.ERROR_MESSAGE);
@@ -206,6 +204,8 @@ public class Bicicleta {
     public static void actualizarBicicleta(javax.swing.JTextField txtID,javax.swing.JTextField txtModelo,javax.swing.JTextField txtTalla,javax.swing.JTextField txtSuspen,javax.swing.JTextField txtTrans,javax.swing.JTextField txtFrenos,javax.swing.JTextField txtStock,javax.swing.JTextField txtValor,javax.swing.JTextField txtCat,javax.swing.JTextField txtFab, javax.swing.JInternalFrame Bicicletas,javax.swing.JTable tablaBicicleta) {
         if( txtID.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Debe seleccionar BICICLETA de la tabla.", "Mensaje", JOptionPane.ERROR_MESSAGE);
+        }else if(txtModelo.getText().equals("") || txtTalla.getText().equals("") || txtSuspen.getText().equals("") || txtTrans.getText().equals("") || txtFrenos.getText().equals("") || txtStock.getText().equals("")  || txtValor.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "RELLENAR TODOS LOS DATOS.", "Mensaje", JOptionPane.ERROR_MESSAGE);
         }else{
             try {   
                     int IDBici = Integer.parseInt(txtID.getText());
@@ -222,10 +222,8 @@ public class Bicicleta {
                     Bicicleta bici = new Bicicleta(IDBici,modeloBici,tallaoBici,suspenBici,transBici,frenosBici,stockBici,valorBici,catBici,fabBici);
                     if (bc.actualizarBicicleta(bici)) {
                         JOptionPane.showMessageDialog(null, "Bicicleta actualizar satisfactoriamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
-                        Generics.limpiezaDatos(txtModelo,txtTalla,txtSuspen,txtTrans,txtFrenos,txtStock,txtValor,txtCat,txtFab);
-                        if (Bicicletas.isVisible()) {
-                            cargarTablaBicicleta(tablaBicicleta);
-                        }
+                        Generics.limpiezaDatos(txtID, txtModelo,txtTalla,txtSuspen,txtTrans,txtFrenos,txtStock,txtValor,txtCat,txtFab);
+                        cargarTablaBicicleta(tablaBicicleta);
                     } else {
                         JOptionPane.showMessageDialog(null, "No se pudo actualizar el bicicleta.", "Mensaje", JOptionPane.ERROR_MESSAGE);
                     }
@@ -255,9 +253,8 @@ public class Bicicleta {
                     if (bc.eliminarBicicleta(bici)) {
                         JOptionPane.showMessageDialog(null, "Bicicleta eliminada satisfactoriamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                         Generics.limpiezaDatos(txtID,txtModelo,txtTalla,txtSuspen,txtTrans,txtFrenos,txtStock,txtValor,txtCat,txtFab);
-                        if (Bicicletas.isVisible()) {
-                            cargarTablaBicicleta(tablaBicicleta);
-                        }
+                        cargarTablaBicicleta(tablaBicicleta);
+                        
                     } else {
                         JOptionPane.showMessageDialog(null, "No se pudo eliminar el bicicleta.", "Mensaje", JOptionPane.ERROR_MESSAGE);
                     }

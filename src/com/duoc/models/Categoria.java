@@ -71,9 +71,7 @@ public class Categoria {
                 if (cc.crearCategoria(categoria)) {
                     JOptionPane.showMessageDialog(null, "Categoria registrado satisfactoriamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                     Generics.limpiezaDatos(txtNombre);
-                    if (Categorias.isVisible()) {
-                        cargarTablaCategoria(tablaCategorias);
-                    }
+                    cargarTablaCategoria(tablaCategorias);
                 } else {
                     JOptionPane.showMessageDialog(null, "No se pudo registrar la categoria.", "Mensaje", JOptionPane.ERROR_MESSAGE);
                 }
@@ -98,9 +96,8 @@ public class Categoria {
                     JOptionPane.showMessageDialog(null, "Categoria modificado satisfactoriamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                     Generics.limpiezaDatos(txtID, txtNombre);
                     if(Categorias.isVisible())
-                    {
-                        cargarTablaCategoria(tablaCategorias);
-                    }
+                    
+                    cargarTablaCategoria(tablaCategorias);
                 }
                 else
                 {
@@ -127,10 +124,9 @@ public class Categoria {
                 {
                     JOptionPane.showMessageDialog(null, "Categoria eliminar satisfactoriamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                     Generics.limpiezaDatos(txtID, txtNombre,txtBC);
-                    if(Categorias.isVisible())
-                    {
-                        cargarTablaCategoria(tablaCategorias);
-                    }
+                    
+                    cargarTablaCategoria(tablaCategorias);
+                    
                 }
                 else
                 {
