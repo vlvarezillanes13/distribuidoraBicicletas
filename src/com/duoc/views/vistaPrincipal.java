@@ -8,6 +8,7 @@ import com.duoc.models.Fabricante;
 import com.duoc.models.Usuario;
 import java.awt.Dimension;
 import javax.swing.JScrollPane;
+import javax.swing.event.InternalFrameEvent;
 
 public class vistaPrincipal extends javax.swing.JFrame {
     
@@ -38,7 +39,8 @@ public class vistaPrincipal extends javax.swing.JFrame {
         scrollpane.setBounds(5,380, 1364, 230);
         scrollpane.setViewportView(jInternalFrameBicicletas);
         jInternalFrameBicicletas.setPreferredSize(new Dimension(350,350));
-        //this.add(scrollpane);
+        this.add(scrollpane);
+        scrollpane.setVisible(false);
         
         //Listar Fabricas
         Fabricante.cargarTablaFabrica(tablaFabricas);
@@ -65,6 +67,9 @@ public class vistaPrincipal extends javax.swing.JFrame {
         G2.tableFilter(tablaCategoria, txtFiltrarCat, ComboBoxCat);
         Generics G3 = new Generics();
         G3.tableFilterBici(tablaBicicleta, txtFiltrarBici, ComboBoxBici);
+        
+        //
+        listerClose();
     }
 
 
@@ -783,7 +788,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
 
     private void MenuBicicletasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuBicicletasActionPerformed
         this.jInternalFrameBicicletas.setVisible(true);
-        this.add(scrollpane);
+        scrollpane.setVisible(true);
     }//GEN-LAST:event_MenuBicicletasActionPerformed
 
     private void MenuIntegrantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuIntegrantesActionPerformed
@@ -823,16 +828,40 @@ public class vistaPrincipal extends javax.swing.JFrame {
         this.btnEliminarBicicleta.setEnabled(false);
     }
     
-    
-//    public static void main(String args[]) {
-//
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new vistaPrincipal().setVisible(true);
-//            }
-//        });
-//    }
+    private void listerClose(){
+        this.jInternalFrameBicicletas.addInternalFrameListener(new javax.swing.event.InternalFrameListener(){
+            @Override
+            public void internalFrameClosing(InternalFrameEvent ife) {
+            }
 
+            @Override
+            public void internalFrameIconified(InternalFrameEvent ife) { 
+            }
+
+            @Override
+            public void internalFrameDeiconified(InternalFrameEvent ife) {
+            }
+
+            @Override
+            public void internalFrameActivated(InternalFrameEvent ife) {
+            }
+
+            @Override
+            public void internalFrameDeactivated(InternalFrameEvent ife) {
+            }
+
+            @Override
+            public void internalFrameOpened(InternalFrameEvent ife) {
+                
+            }
+
+            @Override
+            public void internalFrameClosed(InternalFrameEvent ife) {
+                scrollpane.setVisible(false);
+            }
+        });
+    }
+  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> ComboBoxBici;
     private javax.swing.JComboBox<String> ComboBoxCat;
