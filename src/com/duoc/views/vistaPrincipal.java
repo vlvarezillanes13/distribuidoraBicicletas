@@ -5,18 +5,24 @@ import com.duoc.generics.Generics;
 import com.duoc.models.Bicicleta;
 import com.duoc.models.Categoria;
 import com.duoc.models.Fabricante;
+import com.duoc.models.Usuario;
 import java.awt.Dimension;
 import javax.swing.JScrollPane;
 
 public class vistaPrincipal extends javax.swing.JFrame {
     
     JScrollPane scrollpane;
+    Usuario user;
     
-    public vistaPrincipal() {
+    public vistaPrincipal(Usuario usuario) {
+        initComponents();
         setLocationRelativeTo(null);
         setTitle("Menú Principal");
-        initComponents();
         
+        //Usuario ingresado
+        this.user = usuario;
+        
+        //ESCONDER MENÚ
         this.jInternalFrameFabricante.setVisible(false);
         this.jInternalFrameCategorias.setVisible(false);
         this.jInternalFrameBicicletas.setVisible(false);
@@ -116,6 +122,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
         MenuIntegrantes = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        MenuCerrarSesion = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -243,7 +250,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 33, Short.MAX_VALUE))
+                .addGap(0, 57, Short.MAX_VALUE))
         );
 
         jInternalFrameCategorias.setClosable(true);
@@ -370,7 +377,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
                     .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 36, Short.MAX_VALUE))
+                .addGap(0, 60, Short.MAX_VALUE))
         );
 
         jInternalFrameBicicletas.setClosable(true);
@@ -600,7 +607,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
                                     .addComponent(TXTIDC_BICI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 87, Short.MAX_VALUE))
+                .addGap(0, 111, Short.MAX_VALUE))
         );
 
         jMenu1.setText("Fabricante");
@@ -662,6 +669,14 @@ public class vistaPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu4.add(jMenuItem1);
+
+        MenuCerrarSesion.setText("Cerrar Sesion");
+        MenuCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuCerrarSesionActionPerformed(evt);
+            }
+        });
+        jMenu4.add(MenuCerrarSesion);
 
         MenuCategorias.add(jMenu4);
 
@@ -752,6 +767,12 @@ public class vistaPrincipal extends javax.swing.JFrame {
         ad.setVisible(true);
     }//GEN-LAST:event_MenuIntegrantesActionPerformed
 
+    private void MenuCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCerrarSesionActionPerformed
+        this.setVisible(false);
+        controlAcceso ca = new controlAcceso();
+        ca.setVisible(true);
+    }//GEN-LAST:event_MenuCerrarSesionActionPerformed
+
 
     
     private void limpiarFabCat(){
@@ -762,18 +783,19 @@ public class vistaPrincipal extends javax.swing.JFrame {
     }
     
     
-    public static void main(String args[]) {
-
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new vistaPrincipal().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new vistaPrincipal().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem MenuBicicletas;
     private javax.swing.JMenuBar MenuCategorias;
+    private javax.swing.JMenuItem MenuCerrarSesion;
     private javax.swing.JMenuItem MenuFabricantes;
     private javax.swing.JMenuItem MenuIntegrantes;
     private javax.swing.JTextField TXTIDC_BICI;
