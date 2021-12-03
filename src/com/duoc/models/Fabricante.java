@@ -55,22 +55,25 @@ public class Fabricante {
                 modelo.addRow(fila);
             }
             tablaFabricas.setModel(modelo);
+            modelo.fireTableDataChanged();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Problemas con la conexión a la base de datos", "Mensajes", JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    public static void registrarFabricante(javax.swing.JTextField txtNombre, javax.swing.JInternalFrame Fabricantes,javax.swing.JTable tablaFabricas) {
-        if(txtNombre.getText().equals("")){
+    public static void registrarFabricante(javax.swing.JTextField txtNombre, javax.swing.JInternalFrame Fabricantes, javax.swing.JTable tablaFabricas) {
+        if (txtNombre.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Ingrese Nombre.", "Mensaje", JOptionPane.ERROR_MESSAGE);
-        }else{
+        } else {
             try {
                 String nombreFabricante = txtNombre.getText();
                 Fabricante fabricante = new Fabricante(nombreFabricante);
                 if (fc.crearFabricante(fabricante)) {
                     JOptionPane.showMessageDialog(null, "Fabricante registrado satisfactoriamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
-                    Generics.limpiezaDatos(txtNombre);
-                    cargarTablaFabrica(tablaFabricas);
+                    if (Generics.limpiarDatos(tablaFabricas)) {
+                        cargarTablaFabrica(tablaFabricas);
+                        Generics.limpiezaDatos(txtNombre);
+                    }
                 } else {
                     JOptionPane.showMessageDialog(null, "No se pudo registrar el fabricante.", "Mensaje", JOptionPane.ERROR_MESSAGE);
                 }
@@ -79,61 +82,93 @@ public class Fabricante {
             }
         }
     }
-    
-    public static void modificarFabricante(javax.swing.JTextField txtID,javax.swing.JTextField txtNombre,javax.swing.JInternalFrame Fabricantes,javax.swing.JTable tablaFabricas){
-        
-        if(txtID.getText().equals("") || txtNombre.getText().equals("")){
+
+    public static void modificarFabricante(javax.swing.JTextField txtID, javax.swing.JTextField txtNombre, javax.swing.JInternalFrame Fabricantes, javax.swing.JTable tablaFabricas) {
+
+        if (txtID.getText().equals("") || txtNombre.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Seleccione fabricante de la tabla FABRICANTES", "Mensaje", JOptionPane.ERROR_MESSAGE);
-        }else{
-            try 
-            {
+        } else {
+            try {
                 int IDF = Integer.parseInt(txtID.getText());
                 String nombreFabricante = txtNombre.getText();
-                Fabricante fabricante = new Fabricante(IDF,nombreFabricante);
-                if(fc.actualizarFabricante(fabricante))
-                {
+                Fabricante fabricante = new Fabricante(IDF, nombreFabricante);
+                if (fc.actualizarFabricante(fabricante)) {
                     JOptionPane.showMessageDialog(null, "Fabricante modificado satisfactoriamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
-                    Generics.limpiezaDatos(txtID, txtNombre);
-                   
-                    cargarTablaFabrica(tablaFabricas);
-                    
-                }
-                else
-                {
+                    if (Generics.limpiarDatos(tablaFabricas)) {
+                        cargarTablaFabrica(tablaFabricas);
+                        Generics.limpiezaDatos(txtNombre);
+                    }
+                } else {
                     JOptionPane.showMessageDialog(null, "No se pudo modificar el fabricante", "Mensaje", JOptionPane.ERROR_MESSAGE);
                 }
-            } 
-            catch (HeadlessException | NumberFormatException ex) {
+            } catch (HeadlessException | NumberFormatException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage(), "Mensaje", JOptionPane.ERROR_MESSAGE);
             }
-        }    
+        }
     }
 
-    public static void eliminarFabricante(javax.swing.JTextField txtID,javax.swing.JTextField txtNombre,javax.swing.JInternalFrame Fabricantes,javax.swing.JTable tablaFabricas, javax.swing.JTextField txtBC){
-        
-        if(txtID.getText().equals("") || txtNombre.getText().equals("")){
+    public static void eliminarFabricante(javax.swing.JTextField txtID, javax.swing.JTextField txtNombre, javax.swing.JInternalFrame Fabricantes, javax.swing.JTable tablaFabricas, javax.swing.JTextField txtBC) {
+
+        if (txtID.getText().equals("") || txtNombre.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Seleccione fabricante de la tabla FABRICANTES", "Mensaje", JOptionPane.ERROR_MESSAGE);
-        }else{
-            try 
-            {
+        } else {
+            try {
                 int IDF = Integer.parseInt(txtID.getText());
                 String nombreFabricante = txtNombre.getText();
-                Fabricante fabricante = new Fabricante(IDF,nombreFabricante);
-                if(fc.eliminarFabricante(fabricante))
-                {
+                Fabricante fabricante = new Fabricante(IDF, nombreFabricante);
+                if (fc.eliminarFabricante(fabricante)) {
                     JOptionPane.showMessageDialog(null, "Fabricante eliminado satisfactoriamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
-                    Generics.limpiezaDatos(txtID, txtNombre, txtBC);
-                    cargarTablaFabrica(tablaFabricas);
-                    
-                }
-                else
-                {
+                    if (Generics.limpiarDatos(tablaFabricas)) {
+                        cargarTablaFabrica(tablaFabricas);
+                        Generics.limpiezaDatos(txtNombre);
+                    }
+                } else {
                     JOptionPane.showMessageDialog(null, "No se pudo eliminar el fabricante", "Mensaje", JOptionPane.ERROR_MESSAGE);
                 }
-            } 
-            catch (HeadlessException | NumberFormatException ex) {
+            } catch (HeadlessException | NumberFormatException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage(), "Mensaje", JOptionPane.ERROR_MESSAGE);
             }
-        }    
+        }
+    }
+
+    public static void generarFiltroBusqueda(javax.swing.JTextField txtFiltro, javax.swing.JComboBox tipo, javax.swing.JTable tablaFabricas) {
+        if (txtFiltro.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "No se ingreso filtro\n Se mostrar todos los registros", "Mensaje", JOptionPane.ERROR_MESSAGE);
+            cargarTablaFabrica(tablaFabricas);
+        } else {
+            try {
+                String busqueda = txtFiltro.getText();
+                String filtro = tipo.getSelectedItem().toString();
+                ArrayList<Fabricante> fabricas = fc.obtenerFabricantes();
+                DefaultTableModel modelo = new DefaultTableModel();
+                modelo.addColumn("Codigo");
+                modelo.addColumn("Nombre");
+                for (Fabricante f : fabricas) {
+                    if (filtro.equals("ID")) {
+                        String ID = f.ID + "";
+                        if (ID.contains(busqueda)) {
+                            Object fila[] = new Object[2];
+                            fila[0] = f.getID();
+                            fila[1] = f.getNombre();
+                            modelo.addRow(fila);
+                        }
+                    } else {
+                        String nombre = f.nombre;
+                        if (nombre.contains(busqueda)) {
+                            Object fila[] = new Object[2];
+                            fila[0] = f.getID();
+                            fila[1] = f.getNombre();
+                            modelo.addRow(fila);
+                        }
+                    }
+
+                }
+                tablaFabricas.setModel(modelo);
+                modelo.fireTableDataChanged();
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Mensajes", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+
     }
 }

@@ -60,15 +60,6 @@ public class vistaPrincipal extends javax.swing.JFrame {
         //AGREGAR CLICK A TABLA BICICLETAS
         Generics.mouseListerner(tablaBicicleta, txtIDB, txtModelo, txtTalla, txtSuspen, txtTrans, txtFrenos, txtStock, txtValor, TXTIDC_BICI, TXTIDF_BICI);
         
-        //FILTRAR FABRICANTES
-        Generics G1 = new Generics();
-        G1.tableFilter(tablaFabricas, txtFiltrarFab, ComboBoxFab);
-        Generics G2 = new Generics();
-        G2.tableFilter(tablaCategoria, txtFiltrarCat, ComboBoxCat);
-        Generics G3 = new Generics();
-        G3.tableFilterBici(tablaBicicleta, txtFiltrarBici, ComboBoxBici);
-        
-        //
         listerClose();
     }
 
@@ -89,6 +80,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
         btnEliminarFabricante = new javax.swing.JButton();
         txtFiltrarFab = new javax.swing.JTextField();
         ComboBoxFab = new javax.swing.JComboBox<>();
+        btnFiltrarFab = new javax.swing.JButton();
         jInternalFrameCategorias = new javax.swing.JInternalFrame();
         jScrollPane4 = new javax.swing.JScrollPane();
         tablaCategoria = new javax.swing.JTable();
@@ -101,6 +93,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
         btnEliminarCategoria = new javax.swing.JButton();
         txtFiltrarCat = new javax.swing.JTextField();
         ComboBoxCat = new javax.swing.JComboBox<>();
+        btnFiltrarCat = new javax.swing.JButton();
         jInternalFrameBicicletas = new javax.swing.JInternalFrame();
         jScrollPane3 = new javax.swing.JScrollPane();
         tablaBicicleta = new javax.swing.JTable();
@@ -129,6 +122,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         TXTIDC_BICI = new javax.swing.JTextField();
         TXTIDF_BICI = new javax.swing.JTextField();
+        btnFiltrarBici = new javax.swing.JButton();
         MenuCategorias = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         MenuFabricantes = new javax.swing.JMenuItem();
@@ -148,8 +142,11 @@ public class vistaPrincipal extends javax.swing.JFrame {
         jInternalFrameFabricante.setTitle("FABRICANTES");
         jInternalFrameFabricante.setVisible(true);
 
+        jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
         tablaFabricas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null},
                 {null, null},
                 {null, null},
                 {null, null},
@@ -209,6 +206,13 @@ public class vistaPrincipal extends javax.swing.JFrame {
 
         ComboBoxFab.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Nombre" }));
 
+        btnFiltrarFab.setText("Filtrar");
+        btnFiltrarFab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFiltrarFabActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jInternalFrameFabricanteLayout = new javax.swing.GroupLayout(jInternalFrameFabricante.getContentPane());
         jInternalFrameFabricante.getContentPane().setLayout(jInternalFrameFabricanteLayout);
         jInternalFrameFabricanteLayout.setHorizontalGroup(
@@ -217,16 +221,16 @@ public class vistaPrincipal extends javax.swing.JFrame {
                 .addGroup(jInternalFrameFabricanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrameFabricanteLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jInternalFrameFabricanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrameFabricanteLayout.createSequentialGroup()
+                        .addGroup(jInternalFrameFabricanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)
+                            .addGroup(jInternalFrameFabricanteLayout.createSequentialGroup()
                                 .addGap(26, 26, 26)
                                 .addComponent(btnAgregarFabricante, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(12, 12, 12)
                                 .addComponent(btnModificarFabricante, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnEliminarFabricante, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(jInternalFrameFabricanteLayout.createSequentialGroup()
                         .addGroup(jInternalFrameFabricanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jInternalFrameFabricanteLayout.createSequentialGroup()
@@ -242,8 +246,10 @@ public class vistaPrincipal extends javax.swing.JFrame {
                                 .addContainerGap()
                                 .addComponent(ComboBoxFab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtFiltrarFab, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 35, Short.MAX_VALUE)))
+                                .addComponent(txtFiltrarFab, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnFiltrarFab)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jInternalFrameFabricanteLayout.setVerticalGroup(
@@ -265,15 +271,18 @@ public class vistaPrincipal extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(jInternalFrameFabricanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ComboBoxFab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtFiltrarFab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
+                    .addComponent(txtFiltrarFab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFiltrarFab))
+                .addGap(0, 0, 0)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 18, Short.MAX_VALUE))
+                .addGap(0, 6, Short.MAX_VALUE))
         );
 
         jInternalFrameCategorias.setClosable(true);
         jInternalFrameCategorias.setTitle("CATEGORIAS");
         jInternalFrameCategorias.setVisible(true);
+
+        jScrollPane4.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
         tablaCategoria.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -336,6 +345,13 @@ public class vistaPrincipal extends javax.swing.JFrame {
 
         ComboBoxCat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Descripcion" }));
 
+        btnFiltrarCat.setText("Filtrar");
+        btnFiltrarCat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFiltrarCatActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jInternalFrameCategoriasLayout = new javax.swing.GroupLayout(jInternalFrameCategorias.getContentPane());
         jInternalFrameCategorias.getContentPane().setLayout(jInternalFrameCategoriasLayout);
         jInternalFrameCategoriasLayout.setHorizontalGroup(
@@ -367,9 +383,11 @@ public class vistaPrincipal extends javax.swing.JFrame {
                                     .addComponent(txtNombreC)))
                             .addGroup(jInternalFrameCategoriasLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(ComboBoxCat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(ComboBoxCat, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtFiltrarCat, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtFiltrarCat, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnFiltrarCat)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -392,10 +410,11 @@ public class vistaPrincipal extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(jInternalFrameCategoriasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ComboBoxCat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtFiltrarCat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
+                    .addComponent(txtFiltrarCat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFiltrarCat))
+                .addGap(0, 0, 0)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 21, Short.MAX_VALUE))
+                .addGap(0, 9, Short.MAX_VALUE))
         );
 
         jInternalFrameBicicletas.setClosable(true);
@@ -499,6 +518,13 @@ public class vistaPrincipal extends javax.swing.JFrame {
 
         TXTIDF_BICI.setEditable(false);
 
+        btnFiltrarBici.setText("Filtrar");
+        btnFiltrarBici.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFiltrarBiciActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jInternalFrameBicicletasLayout = new javax.swing.GroupLayout(jInternalFrameBicicletas.getContentPane());
         jInternalFrameBicicletas.getContentPane().setLayout(jInternalFrameBicicletasLayout);
         jInternalFrameBicicletasLayout.setHorizontalGroup(
@@ -522,9 +548,9 @@ public class vistaPrincipal extends javax.swing.JFrame {
                             .addGroup(jInternalFrameBicicletasLayout.createSequentialGroup()
                                 .addGap(32, 32, 32)
                                 .addComponent(jLabel5)))
+                        .addGap(25, 25, 25)
                         .addGroup(jInternalFrameBicicletasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jInternalFrameBicicletasLayout.createSequentialGroup()
-                                .addGap(25, 25, 25)
                                 .addComponent(jLabel10)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jInternalFrameBicicletasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -550,16 +576,14 @@ public class vistaPrincipal extends javax.swing.JFrame {
                                     .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtStock, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jInternalFrameBicicletasLayout.createSequentialGroup()
-                                .addGroup(jInternalFrameBicicletasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jInternalFrameBicicletasLayout.createSequentialGroup()
-                                        .addGap(467, 467, 467)
-                                        .addComponent(btnAgregarBicicleta, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jInternalFrameBicicletasLayout.createSequentialGroup()
-                                        .addGap(62, 62, 62)
-                                        .addComponent(jLabel9)
-                                        .addGap(10, 10, 10)
-                                        .addComponent(txtFiltrarBici, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(98, 98, 98)
+                                .addComponent(jLabel9)
+                                .addGap(10, 10, 10)
+                                .addComponent(txtFiltrarBici, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnFiltrarBici)
+                                .addGap(77, 77, 77)
+                                .addComponent(btnAgregarBicicleta, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(81, 81, 81)
                                 .addComponent(btnModificarBicicleta, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jInternalFrameBicicletasLayout.createSequentialGroup()
                         .addGap(161, 161, 161)
@@ -573,7 +597,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
                             .addGroup(jInternalFrameBicicletasLayout.createSequentialGroup()
                                 .addGap(41, 41, 41)
                                 .addComponent(jLabel16)))
-                        .addGap(0, 72, Short.MAX_VALUE)
+                        .addGap(0, 63, Short.MAX_VALUE)
                         .addGroup(jInternalFrameBicicletasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(TXTIDF_BICI, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
                             .addComponent(TXTIDC_BICI))
@@ -606,7 +630,8 @@ public class vistaPrincipal extends javax.swing.JFrame {
                             .addComponent(btnEliminarBicicleta, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnAgregarBicicleta, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnModificarBicicleta, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtFiltrarBici, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtFiltrarBici, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnFiltrarBici))
                         .addGap(5, 5, 5))
                     .addGroup(jInternalFrameBicicletasLayout.createSequentialGroup()
                         .addGroup(jInternalFrameBicicletasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -817,6 +842,18 @@ public class vistaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFiltrarBiciActionPerformed
 
+    private void btnFiltrarFabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarFabActionPerformed
+        Fabricante.generarFiltroBusqueda(txtFiltrarFab, ComboBoxFab, tablaFabricas);
+    }//GEN-LAST:event_btnFiltrarFabActionPerformed
+
+    private void btnFiltrarCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarCatActionPerformed
+        Categoria.generarFiltroBusqueda(txtFiltrarCat, ComboBoxCat, tablaCategoria);
+    }//GEN-LAST:event_btnFiltrarCatActionPerformed
+
+    private void btnFiltrarBiciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarBiciActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnFiltrarBiciActionPerformed
+
 
     
     private void limpiarFabCat(){
@@ -899,6 +936,9 @@ public class vistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnEliminarBicicleta;
     private javax.swing.JButton btnEliminarCategoria;
     private javax.swing.JButton btnEliminarFabricante;
+    private javax.swing.JButton btnFiltrarBici;
+    private javax.swing.JButton btnFiltrarCat;
+    private javax.swing.JButton btnFiltrarFab;
     private javax.swing.JButton btnModificarBicicleta;
     private javax.swing.JButton btnModificarCategoria;
     private javax.swing.JButton btnModificarFabricante;

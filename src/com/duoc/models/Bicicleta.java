@@ -8,7 +8,8 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class Bicicleta {
-    private static BicicletaController bc =  new BicicletaController();
+
+    private static BicicletaController bc = new BicicletaController();
     private int ID;
     private String modelo;
     private String talla;
@@ -22,7 +23,7 @@ public class Bicicleta {
 
     public Bicicleta() {
     }
-    
+
     public Bicicleta(String modelo, String talla, String suspension, String transmicion, String frenos, int stock, int valor, int categoria, int fabricante) {
         this.modelo = modelo;
         this.talla = talla;
@@ -34,7 +35,7 @@ public class Bicicleta {
         this.categoria = categoria;
         this.fabricante = fabricante;
     }
-    
+
     public Bicicleta(int ID, String modelo, String talla, String suspension, String transmicion, String frenos, int stock, int valor, int categoria, int fabricante) {
         this.ID = ID;
         this.modelo = modelo;
@@ -128,11 +129,9 @@ public class Bicicleta {
         this.fabricante = fabricante;
     }
 
-    
-    public static void cargarTablaBicicleta(javax.swing.JTable tablaBicicleta){
-       
-        try
-        {
+    public static void cargarTablaBicicleta(javax.swing.JTable tablaBicicleta) {
+
+        try {
             ArrayList<Bicicleta> bicicletas = bc.obtenerBicicletas();
             DefaultTableModel modelo = new DefaultTableModel();
             modelo.addColumn("Codigo");
@@ -145,8 +144,7 @@ public class Bicicleta {
             modelo.addColumn("Valor");
             modelo.addColumn("Fabricante");
             modelo.addColumn("Categoria");
-            for(Bicicleta c: bicicletas)
-            {
+            for (Bicicleta c : bicicletas) {
                 Object fila[] = new Object[10];
                 fila[0] = c.getID();
                 fila[1] = c.getModelo();
@@ -161,106 +159,110 @@ public class Bicicleta {
                 modelo.addRow(fila);
             }
             tablaBicicleta.setModel(modelo);
-        }
-        catch(Exception ex)
-        {
+            modelo.fireTableDataChanged();
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Problemas con la conexión a la base de datos", "Mensajes", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
-    public static void registrarBicicleta(javax.swing.JTextField txtModelo,javax.swing.JTextField txtTalla,javax.swing.JTextField txtSuspen,javax.swing.JTextField txtTrans,javax.swing.JTextField txtFrenos,javax.swing.JTextField txtStock,javax.swing.JTextField txtValor,javax.swing.JTextField txtCat,javax.swing.JTextField txtFab, javax.swing.JInternalFrame Bicicletas,javax.swing.JTable tablaBicicleta) {
-        if( txtCat.getText().equals("")){
+
+    public static void registrarBicicleta(javax.swing.JTextField txtModelo, javax.swing.JTextField txtTalla, javax.swing.JTextField txtSuspen, javax.swing.JTextField txtTrans, javax.swing.JTextField txtFrenos, javax.swing.JTextField txtStock, javax.swing.JTextField txtValor, javax.swing.JTextField txtCat, javax.swing.JTextField txtFab, javax.swing.JInternalFrame Bicicletas, javax.swing.JTable tablaBicicleta) {
+        if (txtCat.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Debe seleccionar CATEGORIA de la tabla.", "Mensaje", JOptionPane.ERROR_MESSAGE);
-        }else if(txtFab.getText().equals("")){
+        } else if (txtFab.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Debe seleccionar FABRICANTE de la tabla.", "Mensaje", JOptionPane.ERROR_MESSAGE);
-        }else if(txtModelo.getText().equals("") || txtTalla.getText().equals("") || txtSuspen.getText().equals("") || txtTrans.getText().equals("") || txtFrenos.getText().equals("") || txtStock.getText().equals("")  || txtValor.getText().equals("")){
+        } else if (txtModelo.getText().equals("") || txtTalla.getText().equals("") || txtSuspen.getText().equals("") || txtTrans.getText().equals("") || txtFrenos.getText().equals("") || txtStock.getText().equals("") || txtValor.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "RELLENAR TODOS LOS DATOS.", "Mensaje", JOptionPane.ERROR_MESSAGE);
-        }else{
+        } else {
             try {
-                    String modeloBici = txtModelo.getText();
-                    String tallaoBici = txtTalla.getText();
-                    String suspenBici = txtSuspen.getText();
-                    String transBici = txtTrans.getText();
-                    String frenosBici = txtFrenos.getText();
-                    int stockBici = Integer.parseInt(txtStock.getText());
-                    int valorBici = Integer.parseInt(txtValor.getText());
-                    int catBici = Integer.parseInt(txtCat.getText());
-                    int fabBici = Integer.parseInt(txtFab.getText());
+                String modeloBici = txtModelo.getText();
+                String tallaoBici = txtTalla.getText();
+                String suspenBici = txtSuspen.getText();
+                String transBici = txtTrans.getText();
+                String frenosBici = txtFrenos.getText();
+                int stockBici = Integer.parseInt(txtStock.getText());
+                int valorBici = Integer.parseInt(txtValor.getText());
+                int catBici = Integer.parseInt(txtCat.getText());
+                int fabBici = Integer.parseInt(txtFab.getText());
 
-                    Bicicleta bici = new Bicicleta(modeloBici,tallaoBici,suspenBici,transBici,frenosBici,stockBici,valorBici,catBici,fabBici);
-                    if (bc.crearBicicleta(bici)) {
-                        JOptionPane.showMessageDialog(null, "Bicicleta registrado satisfactoriamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
-                        Generics.limpiezaDatos(txtModelo,txtTalla,txtSuspen,txtTrans,txtFrenos,txtStock,txtValor,txtCat,txtFab);
+                Bicicleta bici = new Bicicleta(modeloBici, tallaoBici, suspenBici, transBici, frenosBici, stockBici, valorBici, catBici, fabBici);
+                if (bc.crearBicicleta(bici)) {
+                    JOptionPane.showMessageDialog(null, "Bicicleta registrado satisfactoriamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                    if (Generics.limpiarDatos(tablaBicicleta)) {
                         cargarTablaBicicleta(tablaBicicleta);
-                    } else {
-                        JOptionPane.showMessageDialog(null, "No se pudo registrar el Bicicleta.", "Mensaje", JOptionPane.ERROR_MESSAGE);
+                        Generics.limpiezaDatos(txtModelo, txtTalla, txtSuspen, txtTrans, txtFrenos, txtStock, txtValor, txtCat, txtFab);
                     }
-                } catch (HeadlessException | NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Mensaje", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se pudo registrar el Bicicleta.", "Mensaje", JOptionPane.ERROR_MESSAGE);
                 }
+            } catch (HeadlessException | NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Mensaje", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
-    
-    public static void actualizarBicicleta(javax.swing.JTextField txtID,javax.swing.JTextField txtModelo,javax.swing.JTextField txtTalla,javax.swing.JTextField txtSuspen,javax.swing.JTextField txtTrans,javax.swing.JTextField txtFrenos,javax.swing.JTextField txtStock,javax.swing.JTextField txtValor,javax.swing.JTextField txtCat,javax.swing.JTextField txtFab, javax.swing.JInternalFrame Bicicletas,javax.swing.JTable tablaBicicleta) {
-        if( txtID.getText().equals("")){
+
+    public static void actualizarBicicleta(javax.swing.JTextField txtID, javax.swing.JTextField txtModelo, javax.swing.JTextField txtTalla, javax.swing.JTextField txtSuspen, javax.swing.JTextField txtTrans, javax.swing.JTextField txtFrenos, javax.swing.JTextField txtStock, javax.swing.JTextField txtValor, javax.swing.JTextField txtCat, javax.swing.JTextField txtFab, javax.swing.JInternalFrame Bicicletas, javax.swing.JTable tablaBicicleta) {
+        if (txtID.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Debe seleccionar BICICLETA de la tabla.", "Mensaje", JOptionPane.ERROR_MESSAGE);
-        }else if(txtModelo.getText().equals("") || txtTalla.getText().equals("") || txtSuspen.getText().equals("") || txtTrans.getText().equals("") || txtFrenos.getText().equals("") || txtStock.getText().equals("")  || txtValor.getText().equals("")){
+        } else if (txtModelo.getText().equals("") || txtTalla.getText().equals("") || txtSuspen.getText().equals("") || txtTrans.getText().equals("") || txtFrenos.getText().equals("") || txtStock.getText().equals("") || txtValor.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "RELLENAR TODOS LOS DATOS.", "Mensaje", JOptionPane.ERROR_MESSAGE);
-        }else{
-            try {   
-                    int IDBici = Integer.parseInt(txtID.getText());
-                    String modeloBici = txtModelo.getText();
-                    String tallaoBici = txtTalla.getText();
-                    String suspenBici = txtSuspen.getText();
-                    String transBici = txtTrans.getText();
-                    String frenosBici = txtFrenos.getText();
-                    int stockBici = Integer.parseInt(txtStock.getText());
-                    int valorBici = Integer.parseInt(txtValor.getText());
-                    int catBici = Integer.parseInt(txtCat.getText());
-                    int fabBici = Integer.parseInt(txtFab.getText());
+        } else {
+            try {
+                int IDBici = Integer.parseInt(txtID.getText());
+                String modeloBici = txtModelo.getText();
+                String tallaoBici = txtTalla.getText();
+                String suspenBici = txtSuspen.getText();
+                String transBici = txtTrans.getText();
+                String frenosBici = txtFrenos.getText();
+                int stockBici = Integer.parseInt(txtStock.getText());
+                int valorBici = Integer.parseInt(txtValor.getText());
+                int catBici = Integer.parseInt(txtCat.getText());
+                int fabBici = Integer.parseInt(txtFab.getText());
 
-                    Bicicleta bici = new Bicicleta(IDBici,modeloBici,tallaoBici,suspenBici,transBici,frenosBici,stockBici,valorBici,catBici,fabBici);
-                    if (bc.actualizarBicicleta(bici)) {
-                        JOptionPane.showMessageDialog(null, "Bicicleta actualizar satisfactoriamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
-                        Generics.limpiezaDatos(txtID, txtModelo,txtTalla,txtSuspen,txtTrans,txtFrenos,txtStock,txtValor,txtCat,txtFab);
+                Bicicleta bici = new Bicicleta(IDBici, modeloBici, tallaoBici, suspenBici, transBici, frenosBici, stockBici, valorBici, catBici, fabBici);
+                if (bc.actualizarBicicleta(bici)) {
+                    JOptionPane.showMessageDialog(null, "Bicicleta actualizar satisfactoriamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                    if (Generics.limpiarDatos(tablaBicicleta)) {
                         cargarTablaBicicleta(tablaBicicleta);
-                    } else {
-                        JOptionPane.showMessageDialog(null, "No se pudo actualizar el bicicleta.", "Mensaje", JOptionPane.ERROR_MESSAGE);
+                        Generics.limpiezaDatos(txtModelo, txtTalla, txtSuspen, txtTrans, txtFrenos, txtStock, txtValor, txtCat, txtFab);
                     }
-                } catch (HeadlessException | NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Mensaje", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se pudo actualizar el bicicleta.", "Mensaje", JOptionPane.ERROR_MESSAGE);
                 }
+            } catch (HeadlessException | NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Mensaje", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
-    
-    public static void eliminarBicicleta(javax.swing.JTextField txtID,javax.swing.JTextField txtModelo,javax.swing.JTextField txtTalla,javax.swing.JTextField txtSuspen,javax.swing.JTextField txtTrans,javax.swing.JTextField txtFrenos,javax.swing.JTextField txtStock,javax.swing.JTextField txtValor,javax.swing.JTextField txtCat,javax.swing.JTextField txtFab, javax.swing.JInternalFrame Bicicletas,javax.swing.JTable tablaBicicleta) {
-        if( txtID.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Debe seleccionar BICICLETA de la tabla.", "Mensaje", JOptionPane.ERROR_MESSAGE);
-        }else{
-            try {   
-                    int IDBici = Integer.parseInt(txtID.getText());
-                    String modeloBici = txtModelo.getText();
-                    String tallaoBici = txtTalla.getText();
-                    String suspenBici = txtSuspen.getText();
-                    String transBici = txtTrans.getText();
-                    String frenosBici = txtFrenos.getText();
-                    int stockBici = Integer.parseInt(txtStock.getText());
-                    int valorBici = Integer.parseInt(txtValor.getText());
-                    int catBici = Integer.parseInt(txtCat.getText());
-                    int fabBici = Integer.parseInt(txtFab.getText());
 
-                    Bicicleta bici = new Bicicleta(IDBici,modeloBici,tallaoBici,suspenBici,transBici,frenosBici,stockBici,valorBici,catBici,fabBici);
-                    if (bc.eliminarBicicleta(bici)) {
-                        JOptionPane.showMessageDialog(null, "Bicicleta eliminada satisfactoriamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
-                        Generics.limpiezaDatos(txtID,txtModelo,txtTalla,txtSuspen,txtTrans,txtFrenos,txtStock,txtValor,txtCat,txtFab);
+    public static void eliminarBicicleta(javax.swing.JTextField txtID, javax.swing.JTextField txtModelo, javax.swing.JTextField txtTalla, javax.swing.JTextField txtSuspen, javax.swing.JTextField txtTrans, javax.swing.JTextField txtFrenos, javax.swing.JTextField txtStock, javax.swing.JTextField txtValor, javax.swing.JTextField txtCat, javax.swing.JTextField txtFab, javax.swing.JInternalFrame Bicicletas, javax.swing.JTable tablaBicicleta) {
+        if (txtID.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar BICICLETA de la tabla.", "Mensaje", JOptionPane.ERROR_MESSAGE);
+        } else {
+            try {
+                int IDBici = Integer.parseInt(txtID.getText());
+                String modeloBici = txtModelo.getText();
+                String tallaoBici = txtTalla.getText();
+                String suspenBici = txtSuspen.getText();
+                String transBici = txtTrans.getText();
+                String frenosBici = txtFrenos.getText();
+                int stockBici = Integer.parseInt(txtStock.getText());
+                int valorBici = Integer.parseInt(txtValor.getText());
+                int catBici = Integer.parseInt(txtCat.getText());
+                int fabBici = Integer.parseInt(txtFab.getText());
+
+                Bicicleta bici = new Bicicleta(IDBici, modeloBici, tallaoBici, suspenBici, transBici, frenosBici, stockBici, valorBici, catBici, fabBici);
+                if (bc.eliminarBicicleta(bici)) {
+                    JOptionPane.showMessageDialog(null, "Bicicleta eliminada satisfactoriamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                    if (Generics.limpiarDatos(tablaBicicleta)) {
                         cargarTablaBicicleta(tablaBicicleta);
-                        
-                    } else {
-                        JOptionPane.showMessageDialog(null, "No se pudo eliminar el bicicleta.", "Mensaje", JOptionPane.ERROR_MESSAGE);
+                        Generics.limpiezaDatos(txtModelo, txtTalla, txtSuspen, txtTrans, txtFrenos, txtStock, txtValor, txtCat, txtFab);
                     }
-                } catch (HeadlessException | NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Mensaje", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se pudo eliminar el bicicleta.", "Mensaje", JOptionPane.ERROR_MESSAGE);
                 }
+            } catch (HeadlessException | NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Mensaje", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
 }
