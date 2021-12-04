@@ -56,7 +56,7 @@ public class Generics {
         txt1.setText("");
     }
 
-    public static void mouseListerner(javax.swing.JTable tablaDatos, javax.swing.JTextField ID, javax.swing.JTextField NOMBRE, javax.swing.JTextField BC) {
+    public static void mouseListerner(javax.swing.JTable tablaDatos, javax.swing.JTextField IDO ,javax.swing.JTextField ID, javax.swing.JTextField NOMBRE, javax.swing.JTextField BC) {
         tablaDatos.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent Mouse_evt) {
@@ -64,6 +64,7 @@ public class Generics {
                 Point point = Mouse_evt.getPoint();
                 int row = table.rowAtPoint(point);
                 if (Mouse_evt.getClickCount() == 1) {
+                    IDO.setText(tablaDatos.getValueAt(row, 0).toString());
                     ID.setText(tablaDatos.getValueAt(row, 0).toString());
                     NOMBRE.setText(tablaDatos.getValueAt(row, 1).toString());
                     BC.setText(tablaDatos.getValueAt(row, 0).toString());
@@ -71,8 +72,8 @@ public class Generics {
             }
         });
     }
-
-    public static void mouseListerner(javax.swing.JTable tablaDatos, javax.swing.JTextField txtID, javax.swing.JTextField txtModelo, javax.swing.JTextField txtTalla, javax.swing.JTextField txtSuspen, javax.swing.JTextField txtTrans, javax.swing.JTextField txtFrenos, javax.swing.JTextField txtStock, javax.swing.JTextField txtValor, javax.swing.JTextField txtCat, javax.swing.JTextField txtFab) {
+    
+    public static void mouseListerner(javax.swing.JTable tablaDatos, javax.swing.JTextField IDO, javax.swing.JTextField txtID, javax.swing.JTextField txtModelo, javax.swing.JTextField txtTalla, javax.swing.JTextField txtSuspen, javax.swing.JTextField txtTrans, javax.swing.JTextField txtFrenos, javax.swing.JTextField txtStock, javax.swing.JTextField txtValor, javax.swing.JTextField txtCat, javax.swing.JTextField txtFab) {
         tablaDatos.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent Mouse_evt) {
@@ -80,6 +81,7 @@ public class Generics {
                 Point point = Mouse_evt.getPoint();
                 int row = table.rowAtPoint(point);
                 if (Mouse_evt.getClickCount() == 1) {
+                    IDO.setText(tablaDatos.getValueAt(row, 0).toString());
                     txtID.setText(tablaDatos.getValueAt(row, 0).toString());
                     txtModelo.setText(tablaDatos.getValueAt(row, 1).toString());
                     txtTalla.setText(tablaDatos.getValueAt(row, 2).toString());

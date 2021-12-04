@@ -8,48 +8,43 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class CategoriaController {
+
     private static final String SQL_READALL = "SELECT * FROM CATEGORIA";
-    private static final String SQL_INSERT = "INSERT INTO CATEGORIA (DESCRIPCION) VALUES (?)";
-    private static final String SQL_UPDATE = "UPDATE CATEGORIA SET DESCRIPCION = ? WHERE ID = ?";
+    private static final String SQL_INSERT = "INSERT INTO CATEGORIA (ID,DESCRIPCION) VALUES (?,?)";
+    private static final String SQL_UPDATE = "UPDATE CATEGORIA SET ID = ?, DESCRIPCION = ? WHERE ID = ?";
     private static final String SQL_DELETE = "DELETE FROM CATEGORIA WHERE ID = ?";
-    
+
     //Definir un objeto Conexion para enlarzar este controlador con la BD
     private static final Conexion CONEXION = Conexion.obtenerConexion();
-    
+
     //Definiar un objeto PreparedStatement para ejecutar las consultas.
     private PreparedStatement ps;
-    
+
     //Definir un objeto ResultSet para almacenar en memoria en resultado de la ejecución de una consulta.
     private ResultSet rs;
-    
-    
+
     public ArrayList<Categoria> obtenerCategorias() {
-        try
-        {
+        try {
             ArrayList<Categoria> categoria = new ArrayList<>();
             ps = CONEXION.getConexion().prepareStatement(SQL_READALL);
             rs = ps.executeQuery();
-            while(rs.next())
-            {
+            while (rs.next()) {
                 categoria.add(new Categoria(rs.getInt(1), rs.getString(2)));
             }
             return categoria;
-        }
-        catch(SQLException ex)
-        {
-            System.out.println("Error obtener categorias: "+ex);
+        } catch (SQLException ex) {
+            System.out.println("Error obtener categorias: " + ex);
             return null;
-        }
-        finally
-        {
+        } finally {
             CONEXION.cerrarConexion();
         }
     }
-    
+
     public boolean crearCategoria(Categoria C) {
         try {
             ps = CONEXION.getConexion().prepareStatement(SQL_INSERT);
-            ps.setString(1, C.getDescripcion());
+            ps.setInt(1, C.getID());
+            ps.setString(2, C.getDescripcion());
             if (ps.executeUpdate() > 0) {
                 return true;
             }
@@ -60,39 +55,30 @@ public class CategoriaController {
             CONEXION.cerrarConexion();
         }
     }
-    
-    public boolean actualizarCategoria(Categoria C) {
-        try
-        {
+
+    public boolean actualizarCategoria(Categoria C, int IDO) {
+        try {
             ps = CONEXION.getConexion().prepareStatement(SQL_UPDATE);
-            ps.setString(1, C.getDescripcion());
-            ps.setInt(2, C.getID());
+            ps.setInt(1, C.getID());
+            ps.setString(2, C.getDescripcion());
+            ps.setInt(3, IDO);
             return ps.executeUpdate() > 0;
-        }
-        catch(SQLException ex)
-        {
+        } catch (SQLException ex) {
             return false;
-        }
-        finally
-        {
+        } finally {
             CONEXION.cerrarConexion();
-        }       
+        }
     }
-    
+
     public boolean eliminarCategoria(Categoria C) {
-        try
-        {
+        try {
             ps = CONEXION.getConexion().prepareStatement(SQL_DELETE);
             ps.setInt(1, C.getID());
             return ps.executeUpdate() > 0;
-        }
-        catch(SQLException ex)
-        {
+        } catch (SQLException ex) {
             return false;
-        }
-        finally
-        {
+        } finally {
             CONEXION.cerrarConexion();
-        }       
+        }
     }
 }

@@ -61,18 +61,19 @@ public class Fabricante {
         }
     }
     
-    public static void registrarFabricante(javax.swing.JTextField txtNombre, javax.swing.JInternalFrame Fabricantes, javax.swing.JTable tablaFabricas) {
-        if (txtNombre.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Ingrese Nombre.", "Mensaje", JOptionPane.ERROR_MESSAGE);
+    public static void registrarFabricante(javax.swing.JTextField txtID,javax.swing.JTextField txtNombre, javax.swing.JInternalFrame Fabricantes, javax.swing.JTable tablaFabricas) {
+        if (txtID.getText().equals("") || txtNombre.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Ingrese datos.", "Mensaje", JOptionPane.ERROR_MESSAGE);
         } else {
             try {
+                int idFabricante = Integer.parseInt(txtID.getText());
                 String nombreFabricante = txtNombre.getText();
-                Fabricante fabricante = new Fabricante(nombreFabricante);
+                Fabricante fabricante = new Fabricante(idFabricante,nombreFabricante);
                 if (fc.crearFabricante(fabricante)) {
                     JOptionPane.showMessageDialog(null, "Fabricante registrado satisfactoriamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                     if (Generics.limpiarDatos(tablaFabricas)) {
                         cargarTablaFabrica(tablaFabricas);
-                        Generics.limpiezaDatos(txtNombre);
+                        Generics.limpiezaDatos(txtID,txtNombre);
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "No se pudo registrar el fabricante.", "Mensaje", JOptionPane.ERROR_MESSAGE);
@@ -83,16 +84,17 @@ public class Fabricante {
         }
     }
     
-    public static void modificarFabricante(javax.swing.JTextField txtID, javax.swing.JTextField txtNombre, javax.swing.JInternalFrame Fabricantes, javax.swing.JTable tablaFabricas) {
+    public static void modificarFabricante(javax.swing.JTextField txtIDO, javax.swing.JTextField txtID, javax.swing.JTextField txtNombre, javax.swing.JInternalFrame Fabricantes, javax.swing.JTable tablaFabricas) {
         
         if (txtID.getText().equals("") || txtNombre.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Seleccione fabricante de la tabla FABRICANTES", "Mensaje", JOptionPane.ERROR_MESSAGE);
         } else {
             try {
+                int IDO = Integer.parseInt(txtIDO.getText());
                 int IDF = Integer.parseInt(txtID.getText());
                 String nombreFabricante = txtNombre.getText();
                 Fabricante fabricante = new Fabricante(IDF, nombreFabricante);
-                if (fc.actualizarFabricante(fabricante)) {
+                if (fc.actualizarFabricante(fabricante, IDO)) {
                     JOptionPane.showMessageDialog(null, "Fabricante modificado satisfactoriamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                     if (Generics.limpiarDatos(tablaFabricas)) {
                         cargarTablaFabrica(tablaFabricas);

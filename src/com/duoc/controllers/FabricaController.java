@@ -10,8 +10,8 @@ import java.util.ArrayList;
 public class FabricaController {
 
     private static final String SQL_READALL = "SELECT * FROM FABRICANTE";
-    private static final String SQL_INSERT = "INSERT INTO FABRICANTE (NOMBRE) VALUES (?)";
-    private static final String SQL_UPDATE = "UPDATE FABRICANTE SET NOMBRE = ? WHERE ID = ?";
+    private static final String SQL_INSERT = "INSERT INTO FABRICANTE (ID,NOMBRE) VALUES (?,?)";
+    private static final String SQL_UPDATE = "UPDATE FABRICANTE SET ID = ?, NOMBRE = ? WHERE ID = ?";
     private static final String SQL_DELETE = "DELETE FROM FABRICANTE WHERE ID = ?";
 
     //Definir un objeto Conexion para enlarzar este controlador con la BD
@@ -43,7 +43,8 @@ public class FabricaController {
     public boolean crearFabricante(Fabricante F) {
         try {
             ps = CONEXION.getConexion().prepareStatement(SQL_INSERT);
-            ps.setString(1, F.getNombre());
+            ps.setInt(1, F.getID());
+            ps.setString(2, F.getNombre());
             if (ps.executeUpdate() > 0) {
                 return true;
             }
@@ -55,12 +56,13 @@ public class FabricaController {
         }
     }
     
-    public boolean actualizarFabricante(Fabricante F) {
+    public boolean actualizarFabricante(Fabricante F, int ID_ORIGEN) {
         try
         {
             ps = CONEXION.getConexion().prepareStatement(SQL_UPDATE);
-            ps.setString(1, F.getNombre());
-            ps.setInt(2, F.getID());
+            ps.setInt(1, F.getID());
+            ps.setString(2, F.getNombre());
+            ps.setInt(3, ID_ORIGEN);
             return ps.executeUpdate() > 0;
         }
         catch(SQLException ex)

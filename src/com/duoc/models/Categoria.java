@@ -61,19 +61,20 @@ public class Categoria {
         }
     }
 
-    public static void registrarCategoria(javax.swing.JTextField txtNombre, javax.swing.JInternalFrame Categorias, javax.swing.JTable tablaCategorias) {
-        if (txtNombre.getText().equals("")) {
+    public static void registrarCategoria(javax.swing.JTextField txtID, javax.swing.JTextField txtNombre, javax.swing.JInternalFrame Categorias, javax.swing.JTable tablaCategorias) {
+        if (txtID.getText().equals("") || txtNombre.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Ingrese Descripcion.", "Mensaje", JOptionPane.ERROR_MESSAGE);
         } else {
 
             try {
+                int IDC = Integer.parseInt(txtID.getText());
                 String nombreCategoria = txtNombre.getText();
-                Categoria categoria = new Categoria(nombreCategoria);
+                Categoria categoria = new Categoria(IDC, nombreCategoria);
                 if (cc.crearCategoria(categoria)) {
                     JOptionPane.showMessageDialog(null, "Categoria registrado satisfactoriamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                     if (Generics.limpiarDatos(tablaCategorias)) {
                         cargarTablaCategoria(tablaCategorias);
-                        Generics.limpiezaDatos(txtNombre);
+                        Generics.limpiezaDatos(txtID, txtNombre);
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "No se pudo registrar la categoria.", "Mensaje", JOptionPane.ERROR_MESSAGE);
@@ -84,20 +85,21 @@ public class Categoria {
         }
     }
 
-    public static void modificarCategoria(javax.swing.JTextField txtID, javax.swing.JTextField txtNombre, javax.swing.JInternalFrame Categorias, javax.swing.JTable tablaCategorias) {
+    public static void modificarCategoria(javax.swing.JTextField txtIDO,javax.swing.JTextField txtID, javax.swing.JTextField txtNombre, javax.swing.JInternalFrame Categorias, javax.swing.JTable tablaCategorias) {
 
         if (txtID.getText().equals("") || txtNombre.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Seleccione categoria de la tabla CATEGORIAS", "Mensaje", JOptionPane.ERROR_MESSAGE);
         } else {
             try {
+                int IDO = Integer.parseInt(txtIDO.getText());
                 int IDC = Integer.parseInt(txtID.getText());
                 String nombreCategoria = txtNombre.getText();
                 Categoria categoria = new Categoria(IDC, nombreCategoria);
-                if (cc.actualizarCategoria(categoria)) {
+                if (cc.actualizarCategoria(categoria,IDO)) {
                     JOptionPane.showMessageDialog(null, "Categoria modificado satisfactoriamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                     if (Generics.limpiarDatos(tablaCategorias)) {
                         cargarTablaCategoria(tablaCategorias);
-                        Generics.limpiezaDatos(txtID,txtNombre);
+                        Generics.limpiezaDatos(txtID, txtNombre);
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "No se pudo modificar el categoria", "Mensaje", JOptionPane.ERROR_MESSAGE);
@@ -121,7 +123,7 @@ public class Categoria {
                     JOptionPane.showMessageDialog(null, "Categoria eliminar satisfactoriamente", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
                     if (Generics.limpiarDatos(tablaCategorias)) {
                         cargarTablaCategoria(tablaCategorias);
-                        Generics.limpiezaDatos(txtID,txtNombre);
+                        Generics.limpiezaDatos(txtID, txtNombre);
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "No se pudo eliminar el categoria", "Mensaje", JOptionPane.ERROR_MESSAGE);
